@@ -1,1 +1,164 @@
 
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>MAVIEN</title>
+
+  <!-- Fonte elegante -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0b0b0b;
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    /* HEADER */
+    header {
+      padding: 20px;
+      text-align: center;
+      border-bottom: 1px solid rgba(212,175,55,0.2);
+    }
+
+    header img {
+      height: 60px;
+    }
+
+    /* HERO */
+    .hero {
+      height: 90vh;
+      background: url('capa-mavien.jpg') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.9));
+    }
+
+    .hero-content {
+      position: relative;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 48px;
+      color: #d4af37;
+      letter-spacing: 2px;
+    }
+
+    .hero p {
+      margin-top: 10px;
+      font-size: 18px;
+      color: #ccc;
+    }
+
+    /* SEÇÃO */
+    .section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .section h2 {
+      font-family: 'Playfair Display', serif;
+      color: #d4af37;
+      margin-bottom: 30px;
+    }
+
+    /* PRODUTO */
+    .product {
+      max-width: 300px;
+      margin: 0 auto;
+      background: #111;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 30px rgba(212,175,55,0.1);
+    }
+
+    .product img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .product-info {
+      padding: 20px;
+    }
+
+    .product-info h3 {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    .product-info span {
+      color: #d4af37;
+      font-size: 18px;
+    }
+
+    /* FINAL */
+    .final {
+      margin-top: 40px;
+    }
+
+    .final img {
+      width: 100%;
+      max-height: 600px;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- LOGO -->
+  <header>
+    <img src="logo-mavien.png">
+  </header>
+
+  <!-- CAPA -->
+  <section class="hero">
+    <div class="overlay"></div>
+
+    <div class="hero-content">
+      <h1>MAVIEN</h1>
+      <p>Elegância, sofisticação e exclusividade</p>
+    </div>
+  </section>
+
+  <!-- PRODUTO -->
+  <section class="section">
+    <h2>Destaque</h2>
+
+    <div class="product">
+      <img src="look1.jpg">
+      <div class="product-info">
+        <h3>Look Sofisticado Bege</h3>
+        <span>R$ 129,90</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL -->
+  <div class="final">
+    <img src="look2.jpg">
+  </div>
+
+</body>
+</html>
