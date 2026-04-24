@@ -8,7 +8,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
+<style>
 *{margin:0;padding:0;box-sizing:border-box}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:#080808;
+  color:#fff;
+  font-family:'Montserrat',sans-serif;
+}
 
 body{
   background:#080808;
@@ -133,10 +144,10 @@ header{
 }
 
 .hero{
-  min-height:650px;
+  min-height:calc(100vh - 86px);
   background:
-    linear-gradient(rgba(0,0,0,.20),rgba(0,0,0,.76)),
-    url('capa-mavien.jpg') center 18%/cover no-repeat;
+    linear-gradient(rgba(0,0,0,.20),rgba(0,0,0,.82)),
+    url('capa-mavien.jpg') center top/cover no-repeat;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -560,7 +571,8 @@ header{
   header{height:78px}
   .header-logo img{height:56px}
 
-  .hero{min-height:580px}
+ .hero{
+  min-height:calc(100vh - 78px);}
   .hero-content img{width:120px}
   .hero p{font-size:18px}
 
