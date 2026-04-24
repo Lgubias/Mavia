@@ -10,6 +10,10 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 
+html{
+  scroll-behavior:smooth;
+}
+
 body{
   background:#080808;
   color:#fff;
@@ -153,8 +157,16 @@ header{
 
 .hero p{
   color:#f1e6d3;
-  font-size:22px;
-  margin-bottom:30px;
+  font-size:20px;
+  font-weight:400;
+  line-height:1.4;
+  margin-bottom:28px;
+  max-width:420px;
+}
+
+.hero p strong{
+  color:#d4af37;
+  font-weight:700;
 }
 
 .gold-btn{
@@ -360,6 +372,32 @@ header{
   font-weight:700;
 }
 
+/* PAGINAÇÃO */
+.pagination{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:12px;
+  margin-top:42px;
+  flex-wrap:wrap;
+}
+
+.pagination button{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  border:1px solid rgba(212,175,55,.55);
+  background:#0d0d0d;
+  color:#d4af37;
+  font-weight:700;
+  font-size:15px;
+}
+
+.pagination button.active{
+  background:#d4af37;
+  color:#111;
+}
+
 /* PEÇAS EM DESTAQUE */
 .destaque-slider{
   padding:95px 6% 90px;
@@ -560,7 +598,10 @@ header{
   header{height:78px}
   .header-logo img{height:56px}
 
-  .hero{min-height:580px}
+  .hero{
+    min-height:calc(100vh - 78px);
+  }
+
   .hero-content img{width:120px}
   .hero p{font-size:18px}
 
@@ -604,8 +645,35 @@ header{
     padding:12px;
   }
 
-  .products{grid-template-columns:1fr}
-  .product-img{height:420px}
+  .products{
+    grid-template-columns:repeat(2,1fr);
+    gap:14px;
+  }
+
+  .product-img{
+    height:260px;
+  }
+
+  .product-info{
+    padding:12px;
+  }
+
+  .product-info h3{
+    font-size:13px;
+  }
+
+  .product-info p{
+    font-size:11px;
+  }
+
+  .price{
+    font-size:20px;
+  }
+
+  .product-info button{
+    font-size:11px;
+    padding:10px;
+  }
 
   .slider{
     width:88vw;
@@ -685,7 +753,10 @@ header{
 <section class="hero">
   <div class="hero-content">
     <img src="logo-mavien.png" alt="MAVIEN">
-    <p>Elegância, sofisticação e exclusividade</p>
+    <p>
+      Looks que valorizam você <br>
+      <strong>sem esforço</strong>
+    </p>
     <button class="gold-btn" onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">
       VER PEÇAS
     </button>
@@ -739,6 +810,7 @@ header{
   </div>
 
   <div class="products" id="products"></div>
+  <div class="pagination" id="pagination"></div>
 </section>
 
 <section class="destaque-slider" id="destaque">
@@ -775,7 +847,7 @@ header{
     </p>
 
     <p>
-      Peças que unem conforto, estilo e versatilidade, com objetivo de fazer você se sentir bonita, confiante e bem vestida, sem complicação, com opções que vão do básico elegante ao look para ocasiões especiais.
+      Peças que unem conforto, estilo e versatilidade, com objetivo de fazer você se sentir bonita, confiante e bem vestida, sem complicação, com opções que vão do básico ao look para sair.
     </p>
 
     <div class="contact-buttons">
@@ -804,23 +876,46 @@ header{
 
 <script>
 const produtos = [
-  {id:1,categoria:"conjuntos",nome:"Conjunto Alfaiataria Bege",descricao:"Composição elegante em tons neutros.",preco:249.90,imagem:"look1.jpg"},
-  {id:2,categoria:"agasalhos",nome:"Cardigã Tricot Off-White",descricao:"Modelagem elegante e feminina.",preco:139.90,imagem:"look2.jpg"},
-  {id:3,categoria:"blusa",nome:"Blazer Alongado Preto",descricao:"Peça clássica para looks sofisticados.",preco:219.90,imagem:"produto-03.jpg"},
-  {id:4,categoria:"vestidos",nome:"Vestido Cetim Preto",descricao:"Delicada, feminina e elegante.",preco:189.90,imagem:"produto-04.jpg"},
-  {id:5,categoria:"vestidos",nome:"Vestido Midi Floral",descricao:"Vestido leve com estampa delicada.",preco:169.90,imagem:"produto-05.jpg"},
-  {id:6,categoria:"blusa",nome:"Blusa Cetim Champagne",descricao:"Toque acetinado e acabamento premium.",preco:99.90,imagem:"produto-06.jpg"},
-  {id:7,categoria:"calcas",nome:"Calça Wide Leg Preta",descricao:"Elegante, moderna e confortável.",preco:159.90,imagem:"produto-07.jpg"},
-  {id:8,categoria:"jeans",nome:"Calça Jeans Premium",descricao:"Modelo versátil para diversas produções.",preco:149.90,imagem:"produto-08.jpg"},
-  {id:9,categoria:"macacao",nome:"Macacão Festa Preto",descricao:"Visual sofisticado para ocasiões especiais.",preco:289.90,imagem:"produto-09.jpg"},
-  {id:10,categoria:"short",nome:"Short Alfaiataria",descricao:"Confortável, elegante e moderno.",preco:89.90,imagem:"produto-10.jpg"},
-  {id:11,categoria:"cropped",nome:"Cropped Manga Bufante",descricao:"Romântico, elegante e versátil.",preco:109.90,imagem:"produto-11.jpg"},
-  {id:12,categoria:"saia",nome:"Saia Midi Cetim",descricao:"Brilho sofisticado e caimento leve.",preco:139.90,imagem:"produto-12.jpg"}
+  {id:1,categoria:"vestidos",nome:"Vestido Balada Preto",descricao:"Look fácil para sair à noite.",preco:189.90,imagem:"produto-01.jpg"},
+  {id:2,categoria:"saia",nome:"Saia Curta Preta",descricao:"Peça básica para compor looks.",preco:79.90,imagem:"produto-02.jpg"},
+  {id:3,categoria:"cropped",nome:"Cropped Branco",descricao:"Básico bonito e versátil.",preco:59.90,imagem:"produto-03.jpg"},
+  {id:4,categoria:"blusa",nome:"Blusa Manga Bufante",descricao:"Leve, bonita e fácil de combinar.",preco:109.90,imagem:"produto-04.jpg"},
+  {id:5,categoria:"conjuntos",nome:"Conjunto Alfaiataria Bege",descricao:"Composição elegante em tons neutros.",preco:249.90,imagem:"look1.jpg"},
+  {id:6,categoria:"macacao",nome:"Macacão Festa Preto",descricao:"Visual marcante para sair.",preco:289.90,imagem:"look2.jpg"},
+  {id:7,categoria:"calcas",nome:"Calça Wide Leg",descricao:"Moderna, confortável e estilosa.",preco:159.90,imagem:"produto-07.jpg"},
+  {id:8,categoria:"jeans",nome:"Calça Jeans Premium",descricao:"Versátil para o dia e para a noite.",preco:149.90,imagem:"produto-08.jpg"},
+  {id:9,categoria:"short",nome:"Short Alfaiataria",descricao:"Confortável, bonito e moderno.",preco:89.90,imagem:"produto-09.jpg"},
+  {id:10,categoria:"cropped",nome:"Cropped Preto",descricao:"Combina com saia, jeans e short.",preco:59.90,imagem:"produto-10.jpg"},
+  {id:11,categoria:"vestidos",nome:"Vestido Curto Nude",descricao:"Simples, bonito e pronto pra usar.",preco:129.90,imagem:"produto-11.jpg"},
+  {id:12,categoria:"acessorios",nome:"Bolsa Pequena Dourada",descricao:"Detalhe final para seu look.",preco:69.90,imagem:"produto-12.jpg"},
+  {id:13,categoria:"agasalhos",nome:"Cardigã Off-White",descricao:"Leve para completar o look.",preco:139.90,imagem:"produto-13.jpg"},
+  {id:14,categoria:"saia",nome:"Saia Midi Cetim",descricao:"Brilho leve e caimento bonito.",preco:139.90,imagem:"produto-14.jpg"},
+  {id:15,categoria:"vestidos",nome:"Vestido Justo Preto",descricao:"Look certeiro para balada.",preco:139.90,imagem:"produto-15.jpg"},
+  {id:16,categoria:"blusa",nome:"Top Alcinha",descricao:"Leve, básico e bonito.",preco:49.90,imagem:"produto-16.jpg"},
+
+  {id:17,categoria:"vestidos",nome:"Vestido Vermelho Curto",descricao:"Para chegar chamando atenção.",preco:149.90,imagem:"produto-17.jpg"},
+  {id:18,categoria:"cropped",nome:"Cropped Rosa",descricao:"Delicado e fácil de combinar.",preco:59.90,imagem:"produto-18.jpg"},
+  {id:19,categoria:"saia",nome:"Saia Jeans",descricao:"Casual com toque feminino.",preco:89.90,imagem:"produto-19.jpg"},
+  {id:20,categoria:"calcas",nome:"Calça Pantalona",descricao:"Confortável e estilosa.",preco:169.90,imagem:"produto-20.jpg"},
+  {id:21,categoria:"conjuntos",nome:"Conjunto Preto",descricao:"Look pronto sem esforço.",preco:219.90,imagem:"produto-21.jpg"},
+  {id:22,categoria:"macacao",nome:"Macacão Nude",descricao:"Prático e marcante.",preco:199.90,imagem:"produto-22.jpg"},
+  {id:23,categoria:"blusa",nome:"Blusa Cetim",descricao:"Básica com toque arrumado.",preco:99.90,imagem:"produto-23.jpg"},
+  {id:24,categoria:"short",nome:"Short Jeans",descricao:"Peça essencial para o dia a dia.",preco:69.90,imagem:"produto-24.jpg"},
+  {id:25,categoria:"jeans",nome:"Jeans Claro",descricao:"Combina com tudo.",preco:129.90,imagem:"produto-25.jpg"},
+  {id:26,categoria:"vestidos",nome:"Vestido Floral",descricao:"Leve e feminino.",preco:119.90,imagem:"produto-26.jpg"},
+  {id:27,categoria:"cropped",nome:"Cropped Nude",descricao:"Básico bonito para sair.",preco:55.90,imagem:"produto-27.jpg"},
+  {id:28,categoria:"saia",nome:"Saia Plissada",descricao:"Movimento e delicadeza.",preco:109.90,imagem:"produto-28.jpg"},
+  {id:29,categoria:"acessorios",nome:"Cinto Dourado",descricao:"Dá acabamento ao look.",preco:39.90,imagem:"produto-29.jpg"},
+  {id:30,categoria:"agasalhos",nome:"Jaqueta Curta",descricao:"Finaliza o visual sem pesar.",preco:159.90,imagem:"produto-30.jpg"},
+  {id:31,categoria:"blusa",nome:"Body Preto",descricao:"Peça prática para noite.",preco:89.90,imagem:"produto-31.jpg"},
+  {id:32,categoria:"vestidos",nome:"Vestido Tubinho",descricao:"Clássico para sair.",preco:129.90,imagem:"produto-32.jpg"}
 ];
 
 let carrinho = [];
 let categoriaAtual = "todos";
 let ordemAtual = "menor";
+let paginaAtual = 1;
+const itensPorPagina = 16;
 
 function formatPrice(v){
   return v.toFixed(2).replace(".", ",");
@@ -842,7 +937,17 @@ function renderProducts(){
     lista.sort((a,b)=>b.preco-a.preco);
   }
 
-  lista.forEach(p=>{
+  const inicio = (paginaAtual - 1) * itensPorPagina;
+  const fim = inicio + itensPorPagina;
+  const paginaItens = lista.slice(inicio, fim);
+
+  if(paginaItens.length === 0){
+    box.innerHTML = "<p style='grid-column:1/-1;text-align:center;color:#d8cfbd;'>Nenhum produto encontrado.</p>";
+    renderPagination(lista);
+    return;
+  }
+
+  paginaItens.forEach(p=>{
     box.innerHTML += `
       <div class="product">
         <div class="product-img">
@@ -857,6 +962,36 @@ function renderProducts(){
         </div>
       </div>
     `;
+  });
+
+  renderPagination(lista);
+}
+
+function renderPagination(lista){
+  const pagination = document.getElementById("pagination");
+  pagination.innerHTML = "";
+
+  const totalPaginas = Math.ceil(lista.length / itensPorPagina);
+
+  if(totalPaginas <= 1){
+    return;
+  }
+
+  for(let i = 1; i <= totalPaginas; i++){
+    pagination.innerHTML += `
+      <button class="${i === paginaAtual ? 'active' : ''}" onclick="changePage(${i})">
+        ${i}
+      </button>
+    `;
+  }
+}
+
+function changePage(numero){
+  paginaAtual = numero;
+  renderProducts();
+
+  document.getElementById("catalogo").scrollIntoView({
+    behavior:"smooth"
   });
 }
 
@@ -882,13 +1017,19 @@ document.addEventListener("click", function(e){
 
 function filterProducts(cat, label){
   categoriaAtual = cat;
+  paginaAtual = 1;
   document.getElementById("filterLabel").innerText = label;
   renderProducts();
   closeDropdowns();
+
+  document.getElementById("catalogo").scrollIntoView({
+    behavior:"smooth"
+  });
 }
 
 function sortProducts(tipo, label){
   ordemAtual = tipo;
+  paginaAtual = 1;
   document.getElementById("sortLabel").innerText = label;
   renderProducts();
   closeDropdowns();
