@@ -17,7 +17,7 @@ body{
 }
 
 header{
-  height:80px;
+  height:92px;
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -26,21 +26,9 @@ header{
   border-bottom:1px solid rgba(212,175,55,.25);
 }
 
-.logo{
-  display:flex;
-  align-items:center;
-  gap:14px;
-}
-
 .logo img{
-  height:58px;
-}
-
-.logo span{
-  font-family:'Playfair Display',serif;
-  color:#d4af37;
-  font-size:30px;
-  letter-spacing:5px;
+  height:76px;
+  object-fit:contain;
 }
 
 nav{
@@ -53,14 +41,14 @@ nav a, nav button{
   color:#eee;
   background:none;
   border:none;
-  font-size:14px;
+  font-size:15px;
   cursor:pointer;
 }
 
 .cart-btn{
   background:#d4af37!important;
   color:#111!important;
-  padding:11px 18px;
+  padding:12px 22px;
   border-radius:30px;
   font-weight:600;
 }
@@ -68,7 +56,7 @@ nav a, nav button{
 .hero{
   height:82vh;
   background:
-    linear-gradient(rgba(0,0,0,.35),rgba(0,0,0,.78)),
+    linear-gradient(rgba(0,0,0,.28),rgba(0,0,0,.72)),
     url('capa-mavien.jpg') center 18%/cover no-repeat;
   display:flex;
   align-items:center;
@@ -78,29 +66,25 @@ nav a, nav button{
 }
 
 .hero-content img{
-  width:150px;
-  margin-bottom:20px;
-}
-
-.hero h1{
-  font-family:'Playfair Display',serif;
-  font-size:62px;
-  color:#d4af37;
-  letter-spacing:8px;
+  width:280px;
+  max-width:80%;
+  margin-bottom:25px;
+  filter:drop-shadow(0 0 18px rgba(212,175,55,.25));
 }
 
 .hero p{
   margin-top:12px;
-  color:#ddd;
-  font-size:18px;
+  color:#eee2c8;
+  font-size:20px;
+  letter-spacing:.03em;
 }
 
 .hero button{
-  margin-top:28px;
+  margin-top:30px;
   background:#d4af37;
   color:#111;
   border:none;
-  padding:14px 28px;
+  padding:15px 34px;
   border-radius:40px;
   font-weight:600;
   cursor:pointer;
@@ -118,7 +102,7 @@ nav a, nav button{
 .section-title h2{
   font-family:'Playfair Display',serif;
   color:#d4af37;
-  font-size:42px;
+  font-size:44px;
   margin-bottom:10px;
 }
 
@@ -217,11 +201,23 @@ nav a, nav button{
   cursor:pointer;
 }
 
+.banner-final{
+  margin:40px 7% 0;
+  min-height:560px;
+  border-radius:26px;
+  overflow:hidden;
+  border:1px solid rgba(212,175,55,.25);
+  background:
+    linear-gradient(rgba(0,0,0,.12),rgba(0,0,0,.42)),
+    url('look2.jpg') center top/cover no-repeat;
+}
+
 .final{
   display:grid;
   grid-template-columns:1fr 1fr;
   background:#111;
   border-top:1px solid rgba(212,175,55,.22);
+  margin-top:60px;
 }
 
 .final-text{
@@ -308,10 +304,14 @@ nav a, nav button{
 }
 
 @media(max-width:600px){
+  header{height:86px;padding:0 5%}
+  .logo img{height:66px}
   nav a{display:none}
+  .hero-content img{width:230px}
+  .hero p{font-size:17px}
   .products{grid-template-columns:1fr}
-  .hero h1{font-size:42px}
   .product-img{height:420px}
+  .banner-final{min-height:520px;margin:30px 5% 0}
 }
 </style>
 </head>
@@ -321,7 +321,6 @@ nav a, nav button{
 <header>
   <div class="logo">
     <img src="logo-mavien.png" alt="MAVIEN">
-    <span>MAVIEN</span>
   </div>
 
   <nav>
@@ -334,7 +333,6 @@ nav a, nav button{
 <section class="hero">
   <div class="hero-content">
     <img src="logo-mavien.png" alt="MAVIEN">
-    <h1>MAVIEN</h1>
     <p>Elegância, sofisticação e exclusividade</p>
     <button onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">Ver peças</button>
   </div>
@@ -357,6 +355,8 @@ nav a, nav button{
 
   <div class="products" id="products"></div>
 </section>
+
+<div class="banner-final"></div>
 
 <section class="final" id="sobre">
   <div class="final-text">
