@@ -1,164 +1,330 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <title>MAVIEN</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAVIEN | Loja</title>
 
-  <!-- Fonte elegante -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
 
-    body {
-      background: #0b0b0b;
-      color: #fff;
-      font-family: 'Montserrat', sans-serif;
-    }
+body{
+  background:#0b0b0b;
+  color:#fff;
+  font-family:'Montserrat',sans-serif;
+}
 
-    /* HEADER */
-    header {
-      padding: 20px;
-      text-align: center;
-      border-bottom: 1px solid rgba(212,175,55,0.2);
-    }
+header{
+  height:80px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 7%;
+  background:#080808;
+  border-bottom:1px solid rgba(212,175,55,.25);
+}
 
-    header img {
-      height: 60px;
-    }
+.logo{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
 
-    /* HERO */
-    .hero {
-      height: 90vh;
-      background: url('capa-mavien.jpg') center/cover no-repeat;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
+.logo img{
+  height:58px;
+}
 
-    .overlay {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.9));
-    }
+.logo span{
+  font-family:'Playfair Display',serif;
+  color:#d4af37;
+  font-size:30px;
+  letter-spacing:5px;
+}
 
-    .hero-content {
-      position: relative;
-      text-align: center;
-    }
+nav{
+  display:flex;
+  gap:22px;
+  align-items:center;
+}
 
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 48px;
-      color: #d4af37;
-      letter-spacing: 2px;
-    }
+nav a, nav button{
+  color:#eee;
+  background:none;
+  border:none;
+  font-size:14px;
+  cursor:pointer;
+}
 
-    .hero p {
-      margin-top: 10px;
-      font-size: 18px;
-      color: #ccc;
-    }
+.cart-btn{
+  background:#d4af37!important;
+  color:#111!important;
+  padding:11px 18px;
+  border-radius:30px;
+  font-weight:600;
+}
 
-    /* SEÇÃO */
-    .section {
-      padding: 60px 20px;
-      text-align: center;
-    }
+.hero{
+  height:82vh;
+  background:
+    linear-gradient(rgba(0,0,0,.35),rgba(0,0,0,.78)),
+    url('capa-mavien.jpg') center 18%/cover no-repeat;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:20px;
+}
 
-    .section h2 {
-      font-family: 'Playfair Display', serif;
-      color: #d4af37;
-      margin-bottom: 30px;
-    }
+.hero-content img{
+  width:150px;
+  margin-bottom:20px;
+}
 
-    /* PRODUTO */
-    .product {
-      max-width: 300px;
-      margin: 0 auto;
-      background: #111;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 0 30px rgba(212,175,55,0.1);
-    }
+.hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:62px;
+  color:#d4af37;
+  letter-spacing:8px;
+}
 
-    .product img {
-      width: 100%;
-      height: 400px;
-      object-fit: cover;
-      object-position: center top;
-    }
+.hero p{
+  margin-top:12px;
+  color:#ddd;
+  font-size:18px;
+}
 
-    .product-info {
-      padding: 20px;
-    }
+.hero button{
+  margin-top:28px;
+  background:#d4af37;
+  color:#111;
+  border:none;
+  padding:14px 28px;
+  border-radius:40px;
+  font-weight:600;
+  cursor:pointer;
+}
 
-    .product-info h3 {
-      font-size: 16px;
-      margin-bottom: 10px;
-    }
+.section{
+  padding:60px 7%;
+}
 
-    .product-info span {
-      color: #d4af37;
-      font-size: 18px;
-    }
+.section-title{
+  text-align:center;
+  margin-bottom:28px;
+}
 
-    /* FINAL */
-    .final {
-      margin-top: 40px;
-    }
+.section-title h2{
+  font-family:'Playfair Display',serif;
+  color:#d4af37;
+  font-size:42px;
+  margin-bottom:10px;
+}
 
-    .final img {
-      width: 100%;
-      max-height: 600px;
-      object-fit: cover;
-      object-position: center top;
-    }
+.section-title p{
+  color:#bdb7aa;
+}
 
-  </style>
+.categories{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-bottom:35px;
+}
+
+.categories button{
+  border:none;
+  padding:12px 22px;
+  border-radius:30px;
+  background:#1a1a1a;
+  color:#ddd;
+  cursor:pointer;
+  border:1px solid rgba(212,175,55,.25);
+}
+
+.categories button.active{
+  background:#d4af37;
+  color:#111;
+  font-weight:600;
+}
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:24px;
+}
+
+.product{
+  background:#111;
+  border:1px solid rgba(212,175,55,.22);
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 0 25px rgba(212,175,55,.08);
+}
+
+.product-img{
+  height:360px;
+  background:#181818;
+}
+
+.product-img img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center top;
+}
+
+.product-info{
+  padding:18px;
+}
+
+.product-info small{
+  color:#d4af37;
+  text-transform:uppercase;
+  font-size:11px;
+  letter-spacing:1.5px;
+}
+
+.product-info h3{
+  margin:8px 0;
+  font-size:17px;
+}
+
+.product-info p{
+  color:#bbb;
+  font-size:13px;
+  line-height:1.5;
+  margin-bottom:12px;
+}
+
+.price{
+  font-family:'Playfair Display',serif;
+  color:#d4af37;
+  font-size:23px;
+  margin-bottom:14px;
+}
+
+.product-info button{
+  width:100%;
+  border:none;
+  background:#d4af37;
+  color:#111;
+  padding:12px;
+  border-radius:10px;
+  font-weight:600;
+  cursor:pointer;
+}
+
+.final{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  background:#111;
+  border-top:1px solid rgba(212,175,55,.22);
+}
+
+.final-text{
+  padding:70px 7%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.final-text h2{
+  font-family:'Playfair Display',serif;
+  color:#d4af37;
+  font-size:42px;
+  margin-bottom:18px;
+}
+
+.final-text p{
+  color:#cfc7b8;
+  line-height:1.8;
+}
+
+.final-img{
+  min-height:620px;
+  background:url('look2.jpg') center top/cover no-repeat;
+}
+
+.cart{
+  position:fixed;
+  top:0;
+  right:-400px;
+  width:370px;
+  max-width:100%;
+  height:100vh;
+  background:#0d0d0d;
+  border-left:1px solid rgba(212,175,55,.25);
+  transition:.3s;
+  z-index:50;
+  padding:22px;
+  overflow:auto;
+}
+
+.cart.active{right:0}
+
+.cart h2{
+  color:#d4af37;
+  font-family:'Playfair Display',serif;
+  margin-bottom:20px;
+}
+
+.close{
+  float:right;
+  background:none;
+  color:white;
+  border:none;
+  font-size:26px;
+  cursor:pointer;
+}
+
+.cart-item{
+  border-bottom:1px solid rgba(212,175,55,.18);
+  padding:14px 0;
+}
+
+.total{
+  margin:22px 0;
+  color:#d4af37;
+  font-size:22px;
+}
+
+.checkout{
+  width:100%;
+  background:#25D366;
+  color:white;
+  border:none;
+  padding:14px;
+  border-radius:12px;
+  font-weight:600;
+  cursor:pointer;
+}
+
+@media(max-width:1000px){
+  .products{grid-template-columns:repeat(2,1fr)}
+  .final{grid-template-columns:1fr}
+}
+
+@media(max-width:600px){
+  nav a{display:none}
+  .products{grid-template-columns:1fr}
+  .hero h1{font-size:42px}
+  .product-img{height:420px}
+}
+</style>
 </head>
 
 <body>
 
-  <!-- LOGO -->
-  <header>
-    <img src="logo-mavien.png">
-  </header>
-
-  <!-- CAPA -->
-  <section class="hero">
-    <div class="overlay"></div>
-
-    <div class="hero-content">
-      <h1>MAVIEN</h1>
-      <p>Elegância, sofisticação e exclusividade</p>
-    </div>
-  </section>
-
-  <!-- PRODUTO -->
-  <section class="section">
-    <h2>Destaque</h2>
-
-    <div class="product">
-      <img src="look1.jpg">
-      <div class="product-info">
-        <h3>Look Sofisticado Bege</h3>
-        <span>R$ 129,90</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- FINAL -->
-  <div class="final">
-    <img src="look2.jpg">
+<header>
+  <div class="logo">
+    <img src="logo-mavien.png" alt="MAVIEN">
+    <span>MAVIEN</span>
   </div>
 
-</body>
-</html>
+  <nav>
+    <a href="#catalogo">Catálogo</a>
+    <a href="#sobre">Sobre</a>
+    <button class="cart-btn" onclick="toggleCart()">Carrinho
