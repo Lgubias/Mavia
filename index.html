@@ -113,16 +113,16 @@ header{
   border-radius:999px;
   padding:15px 34px;
   font-weight:700;
-  box-shadow:0 10px 28px rgba(212,175,55,.18);
 }
 
+/* CATÁLOGO */
 .section{
-  padding:60px 6%;
+  padding:70px 6% 60px;
 }
 
 .section-title{
   text-align:center;
-  margin-bottom:28px;
+  margin-bottom:18px;
 }
 
 .section-title small{
@@ -135,32 +135,118 @@ header{
 .section-title h2{
   font-family:'Playfair Display',serif;
   color:#fff;
-  font-size:42px;
+  font-size:76px;
+  font-weight:500;
   margin-top:8px;
+  line-height:1;
 }
 
-.categories{
+.decor-line{
+  width:330px;
+  height:1px;
+  background:linear-gradient(90deg, transparent, #d4af37, transparent);
+  margin:28px auto 0;
+  position:relative;
+}
+
+.decor-line::after{
+  content:"◆";
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-52%);
+  color:#d4af37;
+  background:#080808;
+  padding:0 14px;
+  font-size:13px;
+}
+
+/* MENUS DO CATÁLOGO */
+.catalog-controls{
   display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:14px;
-  margin-bottom:34px;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:18px;
+  margin:26px auto 36px;
+  width:100%;
 }
 
-.categories button{
-  border:1px solid rgba(212,175,55,.22);
-  background:#101010;
-  color:#f0eadf;
-  border-radius:999px;
-  padding:12px 28px;
-  font-weight:600;
+.dropdown{
+  position:relative;
+  width:280px;
 }
 
-.categories button.active{
-  background:#d4af37;
-  color:#111;
+.dropdown.left{
+  margin-left:0;
+  text-align:left;
 }
 
+.dropdown.right{
+  margin-left:auto;
+  text-align:right;
+}
+
+.dropdown label{
+  display:block;
+  color:#f4e8cf;
+  font-size:15px;
+  margin-bottom:8px;
+}
+
+.dropdown.right label{
+  text-align:right;
+}
+
+.dropdown-btn{
+  width:100%;
+  padding:13px 16px;
+  background:#0d0d0d;
+  color:#f4e8cf;
+  border:1px solid rgba(212,175,55,.65);
+  border-radius:12px;
+  font-size:14px;
+  text-align:left;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.dropdown-menu{
+  display:none;
+  position:absolute;
+  top:58px;
+  width:100%;
+  background:rgba(15,15,15,.97);
+  backdrop-filter:blur(6px);
+  border:1px solid rgba(212,175,55,.45);
+  border-radius:12px;
+  overflow:hidden;
+  z-index:999;
+  box-shadow:0 18px 40px rgba(0,0,0,.5);
+}
+
+.dropdown.left .dropdown-menu{left:0}
+.dropdown.right .dropdown-menu{right:0}
+
+.dropdown-menu.active{display:block}
+
+.dropdown-menu button{
+  width:100%;
+  padding:13px 16px;
+  background:transparent;
+  color:#f4e8cf;
+  border:none;
+  border-bottom:1px solid rgba(212,175,55,.16);
+  text-align:left;
+  font-size:14px;
+}
+
+.dropdown-menu button:hover{
+  background:#1a1a1a;
+  color:#d4af37;
+}
+
+/* PRODUTOS */
 .products{
   display:grid;
   grid-template-columns:repeat(4,1fr);
@@ -172,7 +258,6 @@ header{
   border:1px solid rgba(212,175,55,.18);
   border-radius:15px;
   overflow:hidden;
-  box-shadow:0 0 24px rgba(212,175,55,.06);
 }
 
 .product-img{
@@ -189,6 +274,7 @@ header{
 
 .product-info{
   padding:16px;
+  text-align:center;
 }
 
 .product-info small{
@@ -223,7 +309,7 @@ header{
   background:#d4af37;
   color:#111;
   border:none;
-  border-radius:9px;
+  border-radius:999px;
   padding:12px;
   font-weight:700;
 }
@@ -232,10 +318,6 @@ header{
 .destaque-slider{
   padding:95px 6% 90px;
   text-align:center;
-}
-
-.destaque-title{
-  margin-bottom:42px;
 }
 
 .destaque-title h2{
@@ -255,31 +337,11 @@ header{
   display:block;
 }
 
-.decor-line{
-  width:230px;
-  height:1px;
-  background:linear-gradient(90deg, transparent, #d4af37, transparent);
-  margin:24px auto 0;
-  position:relative;
-}
-
-.decor-line::after{
-  content:"◆";
-  position:absolute;
-  left:50%;
-  top:50%;
-  transform:translate(-50%,-52%);
-  color:#d4af37;
-  background:#080808;
-  padding:0 10px;
-  font-size:12px;
-}
-
 .slider{
   position:relative;
   width:min(86vw, 820px);
   height:520px;
-  margin:0 auto;
+  margin:42px auto 0;
   border-radius:26px;
   overflow:hidden;
   border:1px solid rgba(212,175,55,.28);
@@ -297,9 +359,7 @@ header{
   transition:opacity 1s ease;
 }
 
-.slide.active{
-  opacity:1;
-}
+.slide.active{opacity:1}
 
 .slider-dots{
   display:flex;
@@ -316,9 +376,7 @@ header{
   display:block;
 }
 
-.slider-dots span.active{
-  background:#d4af37;
-}
+.slider-dots span.active{background:#d4af37}
 
 /* SOBRE */
 .about{
@@ -345,7 +403,6 @@ header{
   height:1px;
   background:#d4af37;
   margin:0 auto 30px;
-  opacity:.85;
 }
 
 .about p{
@@ -373,7 +430,6 @@ header{
   color:#d4af37;
   font-weight:700;
   font-size:14px;
-  letter-spacing:.03em;
 }
 
 .footer-mark{
@@ -451,6 +507,7 @@ header{
 
 @media(max-width:1000px){
   .products{grid-template-columns:repeat(2,1fr)}
+  .section-title h2{font-size:60px}
 }
 
 @media(max-width:600px){
@@ -461,15 +518,51 @@ header{
   .hero-content img{width:120px}
   .hero p{font-size:18px}
 
+  .section{
+    padding:60px 5% 50px;
+  }
+
+  .section-title h2{
+    font-size:52px;
+  }
+
+  .decor-line{
+    width:250px;
+    margin-top:22px;
+  }
+
+  .catalog-controls{
+    margin:24px auto 30px;
+    gap:16px;
+  }
+
+  .dropdown{
+    width:48%;
+  }
+
+  .dropdown label{
+    font-size:14px;
+  }
+
+  .dropdown-btn{
+    font-size:13px;
+    padding:12px;
+  }
+
+  .dropdown-menu{
+    top:54px;
+  }
+
+  .dropdown-menu button{
+    font-size:13px;
+    padding:12px;
+  }
+
   .products{grid-template-columns:1fr}
   .product-img{height:420px}
 
   .destaque-slider{
     padding:82px 5% 76px;
-  }
-
-  .destaque-title{
-    margin-bottom:34px;
   }
 
   .destaque-title h2{
@@ -480,10 +573,6 @@ header{
     width:88vw;
     height:560px;
     border-radius:24px;
-  }
-
-  .slider-dots{
-    margin-top:24px;
   }
 
   .about{
@@ -555,16 +644,41 @@ header{
   <div class="section-title">
     <small>Catálogo</small>
     <h2>Nossas peças</h2>
+    <div class="decor-line"></div>
   </div>
 
-  <div class="categories">
-    <button class="active" onclick="filterProducts('todos', this)">Todos</button>
-    <button onclick="filterProducts('vestidos', this)">Vestidos</button>
-    <button onclick="filterProducts('blusas', this)">Blusas</button>
-    <button onclick="filterProducts('calcas', this)">Calças</button>
-    <button onclick="filterProducts('saias', this)">Saias</button>
-    <button onclick="filterProducts('blazers', this)">Blazers</button>
-    <button onclick="filterProducts('conjuntos', this)">Conjuntos</button>
+  <div class="catalog-controls">
+    <div class="dropdown left">
+      <label>Ordenar</label>
+      <button class="dropdown-btn" onclick="toggleDropdown('sortMenu')">
+        <span id="sortLabel">Menor preço</span>
+        <span>⌄</span>
+      </button>
+
+      <div class="dropdown-menu" id="sortMenu">
+        <button onclick="sortProducts('menor', 'Menor preço')">Menor preço</button>
+        <button onclick="sortProducts('maior', 'Maior preço')">Maior preço</button>
+        <button onclick="sortProducts('relevantes', 'Mais relevantes')">Mais relevantes</button>
+      </div>
+    </div>
+
+    <div class="dropdown right">
+      <label>Filtrar</label>
+      <button class="dropdown-btn" onclick="toggleDropdown('filterMenu')">
+        <span id="filterLabel">Selecionar</span>
+        <span>⌄</span>
+      </button>
+
+      <div class="dropdown-menu" id="filterMenu">
+        <button onclick="filterProducts('todos', 'Todos')">Todos</button>
+        <button onclick="filterProducts('novidades', 'Novidades')">Novidades</button>
+        <button onclick="filterProducts('balada', 'Balada')">Balada</button>
+        <button onclick="filterProducts('casual', 'Casual')">Casual</button>
+        <button onclick="filterProducts('fitness', 'Fitness')">Fitness</button>
+        <button onclick="filterProducts('alfaiataria', 'Alfaiataria')">Alfaiataria</button>
+        <button onclick="filterProducts('elegante', 'Elegante')">Elegante</button>
+      </div>
+    </div>
   </div>
 
   <div class="products" id="products"></div>
@@ -633,22 +747,23 @@ header{
 
 <script>
 const produtos = [
-  {id:1,categoria:"blazers",nome:"Look Sofisticado Bege",descricao:"Composição elegante em tons neutros.",preco:129.90,imagem:"look1.jpg"},
-  {id:2,categoria:"calcas",nome:"Calça Alfaiataria Bege",descricao:"Modelagem elegante e feminina.",preco:159.90,imagem:"look2.jpg"},
-  {id:3,categoria:"blusas",nome:"Blusa Elegance Off-White",descricao:"Peça clássica para looks sofisticados.",preco:89.90,imagem:"produto-03.jpg"},
-  {id:4,categoria:"saias",nome:"Saia Plissada Rosé",descricao:"Delicada, feminina e elegante.",preco:119.90,imagem:"produto-04.jpg"},
-  {id:5,categoria:"vestidos",nome:"Vestido Midi Floral",descricao:"Vestido leve com estampa delicada.",preco:169.90,imagem:"produto-05.jpg"},
-  {id:6,categoria:"blusas",nome:"Blusa Cetim Champagne",descricao:"Toque acetinado e acabamento premium.",preco:99.90,imagem:"produto-06.jpg"},
-  {id:7,categoria:"calcas",nome:"Calça Wide Leg Preta",descricao:"Elegante, moderna e confortável.",preco:159.90,imagem:"produto-07.jpg"},
-  {id:8,categoria:"blazers",nome:"Blazer Alfaiataria Preto",descricao:"Peça poderosa para composições premium.",preco:219.90,imagem:"produto-08.jpg"},
-  {id:9,categoria:"vestidos",nome:"Vestido Longo Festa",descricao:"Visual sofisticado para ocasiões especiais.",preco:289.90,imagem:"produto-09.jpg"},
-  {id:10,categoria:"conjuntos",nome:"Conjunto Alfaiataria Bege",descricao:"Conjunto elegante em tom neutro.",preco:249.90,imagem:"produto-10.jpg"},
-  {id:11,categoria:"blusas",nome:"Blusa Manga Bufante",descricao:"Romântica, elegante e versátil.",preco:109.90,imagem:"produto-11.jpg"},
-  {id:12,categoria:"saias",nome:"Saia Midi Cetim",descricao:"Brilho sofisticado e caimento leve.",preco:139.90,imagem:"produto-12.jpg"}
+  {id:1,categoria:"alfaiataria",nome:"Conjunto Alfaiataria Bege",descricao:"Composição elegante em tons neutros.",preco:249.90,imagem:"look1.jpg"},
+  {id:2,categoria:"casual",nome:"Cardigã Tricot Off-White",descricao:"Modelagem elegante e feminina.",preco:139.90,imagem:"look2.jpg"},
+  {id:3,categoria:"elegante",nome:"Blazer Alongado Preto",descricao:"Peça clássica para looks sofisticados.",preco:219.90,imagem:"produto-03.jpg"},
+  {id:4,categoria:"balada",nome:"Vestido Cetim Preto",descricao:"Delicada, feminina e elegante.",preco:189.90,imagem:"produto-04.jpg"},
+  {id:5,categoria:"novidades",nome:"Vestido Midi Floral",descricao:"Vestido leve com estampa delicada.",preco:169.90,imagem:"produto-05.jpg"},
+  {id:6,categoria:"casual",nome:"Blusa Cetim Champagne",descricao:"Toque acetinado e acabamento premium.",preco:99.90,imagem:"produto-06.jpg"},
+  {id:7,categoria:"alfaiataria",nome:"Calça Wide Leg Preta",descricao:"Elegante, moderna e confortável.",preco:159.90,imagem:"produto-07.jpg"},
+  {id:8,categoria:"elegante",nome:"Blazer Alfaiataria Preto",descricao:"Peça poderosa para composições premium.",preco:219.90,imagem:"produto-08.jpg"},
+  {id:9,categoria:"balada",nome:"Vestido Longo Festa",descricao:"Visual sofisticado para ocasiões especiais.",preco:289.90,imagem:"produto-09.jpg"},
+  {id:10,categoria:"fitness",nome:"Conjunto Modelador",descricao:"Confortável, ajustado e versátil.",preco:119.90,imagem:"produto-10.jpg"},
+  {id:11,categoria:"casual",nome:"Blusa Manga Bufante",descricao:"Romântica, elegante e versátil.",preco:109.90,imagem:"produto-11.jpg"},
+  {id:12,categoria:"elegante",nome:"Saia Midi Cetim",descricao:"Brilho sofisticado e caimento leve.",preco:139.90,imagem:"produto-12.jpg"}
 ];
 
 let carrinho = [];
 let categoriaAtual = "todos";
+let ordemAtual = "menor";
 
 function formatPrice(v){
   return v.toFixed(2).replace(".", ",");
@@ -658,9 +773,17 @@ function renderProducts(){
   const box = document.getElementById("products");
   box.innerHTML = "";
 
-  const lista = categoriaAtual === "todos"
-    ? produtos
+  let lista = categoriaAtual === "todos"
+    ? [...produtos]
     : produtos.filter(p => p.categoria === categoriaAtual);
+
+  if(ordemAtual === "menor"){
+    lista.sort((a,b)=>a.preco-b.preco);
+  }
+
+  if(ordemAtual === "maior"){
+    lista.sort((a,b)=>b.preco-a.preco);
+  }
 
   lista.forEach(p=>{
     box.innerHTML += `
@@ -680,11 +803,44 @@ function renderProducts(){
   });
 }
 
-function filterProducts(cat, btn){
+function toggleDropdown(id){
+  const menu = document.getElementById(id);
+
+  document.querySelectorAll(".dropdown-menu").forEach(item=>{
+    if(item.id !== id){
+      item.classList.remove("active");
+    }
+  });
+
+  menu.classList.toggle("active");
+}
+
+document.addEventListener("click", function(e){
+  if(!e.target.closest(".dropdown")){
+    document.querySelectorAll(".dropdown-menu").forEach(menu=>{
+      menu.classList.remove("active");
+    });
+  }
+});
+
+function filterProducts(cat, label){
   categoriaAtual = cat;
-  document.querySelectorAll(".categories button").forEach(b=>b.classList.remove("active"));
-  btn.classList.add("active");
+  document.getElementById("filterLabel").innerText = label;
   renderProducts();
+  closeDropdowns();
+}
+
+function sortProducts(tipo, label){
+  ordemAtual = tipo;
+  document.getElementById("sortLabel").innerText = label;
+  renderProducts();
+  closeDropdowns();
+}
+
+function closeDropdowns(){
+  document.querySelectorAll(".dropdown-menu").forEach(menu=>{
+    menu.classList.remove("active");
+  });
 }
 
 function addCart(id){
