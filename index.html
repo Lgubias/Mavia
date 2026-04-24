@@ -46,39 +46,90 @@ header{
 .side-menu{
   position:fixed;
   top:0;
-  left:-300px;
-  width:290px;
+  left:-330px;
+  width:320px;
   height:100vh;
-  background:#070707;
-  border-right:1px solid rgba(212,175,55,.25);
-  z-index:200;
-  padding:28px;
+  background:#050505;
+  border-right:1px solid rgba(212,175,55,.28);
+  z-index:300;
+  padding:28px 28px 40px;
   transition:.3s;
-  display:flex;
-  flex-direction:column;
-  gap:22px;
+  overflow-y:auto;
 }
 
 .side-menu.active{left:0}
 
-.side-menu img{
-  width:150px;
-  margin:20px auto 25px;
+.close-menu{
+  background:none;
+  border:none;
+  color:white;
+  font-size:34px;
+  float:right;
 }
 
-.side-menu a,.side-menu button{
+.side-logo{
+  clear:both;
+  text-align:center;
+  padding:65px 0 35px;
+}
+
+.side-logo img{
+  width:150px;
+}
+
+.side-links{
+  display:flex;
+  flex-direction:column;
+  gap:24px;
+  margin-bottom:34px;
+}
+
+.side-links a,
+.side-links button{
   color:#f4e8cf;
   background:none;
   border:none;
   text-align:left;
-  font-size:18px;
+  font-size:20px;
   text-decoration:none;
 }
 
-.close-menu{
-  align-self:flex-end;
-  color:white!important;
-  font-size:34px!important;
+.side-divider{
+  height:1px;
+  background:#d4af37;
+  opacity:.75;
+  margin:32px 0;
+}
+
+.side-title{
+  color:#d4af37;
+  font-size:14px;
+  font-weight:700;
+  letter-spacing:4px;
+  margin-bottom:20px;
+}
+
+.category-list{
+  display:flex;
+  flex-direction:column;
+}
+
+.category-list button{
+  width:100%;
+  background:none;
+  border:none;
+  border-bottom:1px solid rgba(212,175,55,.16);
+  color:#f4e8cf;
+  font-size:19px;
+  padding:15px 0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.category-list button span{
+  color:#d4af37;
+  font-size:24px;
 }
 
 .hero{
@@ -161,7 +212,7 @@ header{
   font-size:13px;
 }
 
-/* MENUS DO CATÁLOGO */
+/* MENUS ORDENAR/FILTRAR */
 .catalog-controls{
   display:flex;
   justify-content:space-between;
@@ -174,11 +225,6 @@ header{
 .dropdown{
   position:relative;
   width:280px;
-}
-
-.dropdown.left{
-  margin-left:0;
-  text-align:left;
 }
 
 .dropdown.right{
@@ -454,7 +500,7 @@ header{
   background:#0d0d0d;
   border-left:1px solid rgba(212,175,55,.25);
   transition:.3s;
-  z-index:300;
+  z-index:400;
   padding:22px;
   overflow:auto;
 }
@@ -561,14 +607,6 @@ header{
   .products{grid-template-columns:1fr}
   .product-img{height:420px}
 
-  .destaque-slider{
-    padding:82px 5% 76px;
-  }
-
-  .destaque-title h2{
-    font-size:34px;
-  }
-
   .slider{
     width:88vw;
     height:560px;
@@ -588,22 +626,13 @@ header{
     line-height:1.58;
   }
 
-  .contact-buttons{
-    gap:22px;
-    margin-top:36px;
+  .side-menu{
+    width:78vw;
+    left:-78vw;
   }
 
-  .contact-buttons button{
-    min-width:230px;
-    font-size:13px;
-  }
-
-  .footer-mark{
-    margin-top:62px;
-  }
-
-  .footer-mark img{
-    width:150px;
+  .side-menu.active{
+    left:0;
   }
 }
 </style>
@@ -623,11 +652,34 @@ header{
 
 <div class="side-menu" id="sideMenu">
   <button class="close-menu" onclick="toggleMenu()">×</button>
-  <img src="logo-mavien.png" alt="MAVIEN">
-  <a href="#catalogo" onclick="toggleMenu()">Catálogo</a>
-  <a href="#destaque" onclick="toggleMenu()">Peças em destaque</a>
-  <a href="#sobre" onclick="toggleMenu()">Sobre a MAVIEN</a>
-  <button onclick="toggleCart(); toggleMenu()">Carrinho 🛒</button>
+
+  <div class="side-logo">
+    <img src="logo-mavien.png" alt="MAVIEN">
+  </div>
+
+  <div class="side-links">
+    <a href="#catalogo" onclick="toggleMenu()">Catálogo</a>
+    <a href="#sobre" onclick="toggleMenu()">Sobre a MAVIEN</a>
+    <button onclick="toggleCart(); toggleMenu()">Carrinho 🛒</button>
+  </div>
+
+  <div class="side-divider"></div>
+
+  <div class="side-title">CATEGORIAS</div>
+
+  <div class="category-list">
+    <button onclick="filterProducts('vestidos','Vestidos'); toggleMenu()">Vestidos <span>›</span></button>
+    <button onclick="filterProducts('conjuntos','Conjuntos'); toggleMenu()">Conjuntos <span>›</span></button>
+    <button onclick="filterProducts('macacao','Macacão'); toggleMenu()">Macacão <span>›</span></button>
+    <button onclick="filterProducts('blusa','Blusa'); toggleMenu()">Blusa <span>›</span></button>
+    <button onclick="filterProducts('cropped','Cropped'); toggleMenu()">Cropped <span>›</span></button>
+    <button onclick="filterProducts('saia','Saia'); toggleMenu()">Saia <span>›</span></button>
+    <button onclick="filterProducts('short','Short'); toggleMenu()">Short <span>›</span></button>
+    <button onclick="filterProducts('calcas','Calças'); toggleMenu()">Calças <span>›</span></button>
+    <button onclick="filterProducts('jeans','Jeans'); toggleMenu()">Jeans <span>›</span></button>
+    <button onclick="filterProducts('acessorios','Acessórios'); toggleMenu()">Acessórios <span>›</span></button>
+    <button onclick="filterProducts('agasalhos','Agasalhos'); toggleMenu()">Agasalhos <span>›</span></button>
+  </div>
 </div>
 
 <section class="hero">
@@ -671,12 +723,17 @@ header{
 
       <div class="dropdown-menu" id="filterMenu">
         <button onclick="filterProducts('todos', 'Todos')">Todos</button>
-        <button onclick="filterProducts('novidades', 'Novidades')">Novidades</button>
-        <button onclick="filterProducts('balada', 'Balada')">Balada</button>
-        <button onclick="filterProducts('casual', 'Casual')">Casual</button>
-        <button onclick="filterProducts('fitness', 'Fitness')">Fitness</button>
-        <button onclick="filterProducts('alfaiataria', 'Alfaiataria')">Alfaiataria</button>
-        <button onclick="filterProducts('elegante', 'Elegante')">Elegante</button>
+        <button onclick="filterProducts('vestidos', 'Vestidos')">Vestidos</button>
+        <button onclick="filterProducts('conjuntos', 'Conjuntos')">Conjuntos</button>
+        <button onclick="filterProducts('macacao', 'Macacão')">Macacão</button>
+        <button onclick="filterProducts('blusa', 'Blusa')">Blusa</button>
+        <button onclick="filterProducts('cropped', 'Cropped')">Cropped</button>
+        <button onclick="filterProducts('saia', 'Saia')">Saia</button>
+        <button onclick="filterProducts('short', 'Short')">Short</button>
+        <button onclick="filterProducts('calcas', 'Calças')">Calças</button>
+        <button onclick="filterProducts('jeans', 'Jeans')">Jeans</button>
+        <button onclick="filterProducts('acessorios', 'Acessórios')">Acessórios</button>
+        <button onclick="filterProducts('agasalhos', 'Agasalhos')">Agasalhos</button>
       </div>
     </div>
   </div>
@@ -747,18 +804,18 @@ header{
 
 <script>
 const produtos = [
-  {id:1,categoria:"alfaiataria",nome:"Conjunto Alfaiataria Bege",descricao:"Composição elegante em tons neutros.",preco:249.90,imagem:"look1.jpg"},
-  {id:2,categoria:"casual",nome:"Cardigã Tricot Off-White",descricao:"Modelagem elegante e feminina.",preco:139.90,imagem:"look2.jpg"},
-  {id:3,categoria:"elegante",nome:"Blazer Alongado Preto",descricao:"Peça clássica para looks sofisticados.",preco:219.90,imagem:"produto-03.jpg"},
-  {id:4,categoria:"balada",nome:"Vestido Cetim Preto",descricao:"Delicada, feminina e elegante.",preco:189.90,imagem:"produto-04.jpg"},
-  {id:5,categoria:"novidades",nome:"Vestido Midi Floral",descricao:"Vestido leve com estampa delicada.",preco:169.90,imagem:"produto-05.jpg"},
-  {id:6,categoria:"casual",nome:"Blusa Cetim Champagne",descricao:"Toque acetinado e acabamento premium.",preco:99.90,imagem:"produto-06.jpg"},
-  {id:7,categoria:"alfaiataria",nome:"Calça Wide Leg Preta",descricao:"Elegante, moderna e confortável.",preco:159.90,imagem:"produto-07.jpg"},
-  {id:8,categoria:"elegante",nome:"Blazer Alfaiataria Preto",descricao:"Peça poderosa para composições premium.",preco:219.90,imagem:"produto-08.jpg"},
-  {id:9,categoria:"balada",nome:"Vestido Longo Festa",descricao:"Visual sofisticado para ocasiões especiais.",preco:289.90,imagem:"produto-09.jpg"},
-  {id:10,categoria:"fitness",nome:"Conjunto Modelador",descricao:"Confortável, ajustado e versátil.",preco:119.90,imagem:"produto-10.jpg"},
-  {id:11,categoria:"casual",nome:"Blusa Manga Bufante",descricao:"Romântica, elegante e versátil.",preco:109.90,imagem:"produto-11.jpg"},
-  {id:12,categoria:"elegante",nome:"Saia Midi Cetim",descricao:"Brilho sofisticado e caimento leve.",preco:139.90,imagem:"produto-12.jpg"}
+  {id:1,categoria:"conjuntos",nome:"Conjunto Alfaiataria Bege",descricao:"Composição elegante em tons neutros.",preco:249.90,imagem:"look1.jpg"},
+  {id:2,categoria:"agasalhos",nome:"Cardigã Tricot Off-White",descricao:"Modelagem elegante e feminina.",preco:139.90,imagem:"look2.jpg"},
+  {id:3,categoria:"blusa",nome:"Blazer Alongado Preto",descricao:"Peça clássica para looks sofisticados.",preco:219.90,imagem:"produto-03.jpg"},
+  {id:4,categoria:"vestidos",nome:"Vestido Cetim Preto",descricao:"Delicada, feminina e elegante.",preco:189.90,imagem:"produto-04.jpg"},
+  {id:5,categoria:"vestidos",nome:"Vestido Midi Floral",descricao:"Vestido leve com estampa delicada.",preco:169.90,imagem:"produto-05.jpg"},
+  {id:6,categoria:"blusa",nome:"Blusa Cetim Champagne",descricao:"Toque acetinado e acabamento premium.",preco:99.90,imagem:"produto-06.jpg"},
+  {id:7,categoria:"calcas",nome:"Calça Wide Leg Preta",descricao:"Elegante, moderna e confortável.",preco:159.90,imagem:"produto-07.jpg"},
+  {id:8,categoria:"jeans",nome:"Calça Jeans Premium",descricao:"Modelo versátil para diversas produções.",preco:149.90,imagem:"produto-08.jpg"},
+  {id:9,categoria:"macacao",nome:"Macacão Festa Preto",descricao:"Visual sofisticado para ocasiões especiais.",preco:289.90,imagem:"produto-09.jpg"},
+  {id:10,categoria:"short",nome:"Short Alfaiataria",descricao:"Confortável, elegante e moderno.",preco:89.90,imagem:"produto-10.jpg"},
+  {id:11,categoria:"cropped",nome:"Cropped Manga Bufante",descricao:"Romântico, elegante e versátil.",preco:109.90,imagem:"produto-11.jpg"},
+  {id:12,categoria:"saia",nome:"Saia Midi Cetim",descricao:"Brilho sofisticado e caimento leve.",preco:139.90,imagem:"produto-12.jpg"}
 ];
 
 let carrinho = [];
@@ -908,7 +965,6 @@ function checkout(){
   window.open("https://wa.me/5500000000000?text=" + msg);
 }
 
-/* SLIDER AUTOMÁTICO */
 let slideAtual = 0;
 
 function iniciarSlider(){
