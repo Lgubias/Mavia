@@ -251,16 +251,70 @@ header{
 
 .banner-detail span{color:#d4af37}
 
-about
+.about{
+  padding:110px 6% 70px;
+  text-align:center;
+  background:#050505;
+}
 
-.whats{
-  margin-top:20px;
+.about-content{
+  max-width:760px;
+  margin:0 auto;
+}
+
+.about h2{
+  font-family:'Playfair Display',serif;
+  color:#f4e8cf;
+  font-size:34px;
+  font-weight:500;
+  margin-bottom:18px;
+}
+
+.gold-line{
+  width:240px;
+  height:1px;
+  background:#d4af37;
+  margin:0 auto 30px;
+  opacity:.85;
+}
+
+.about p{
+  color:#d8cfbd;
+  font-size:16px;
+  line-height:1.65;
+  margin:0 auto 18px;
+  max-width:680px;
+}
+
+.contact-buttons{
+  margin-top:44px;
+  display:flex;
+  justify-content:center;
+  gap:52px;
+  flex-wrap:wrap;
+}
+
+.contact-buttons button{
+  min-width:250px;
+  padding:14px 22px;
+  border-radius:7px;
   border:1px solid #d4af37;
-  background:none;
+  background:transparent;
   color:#d4af37;
-  padding:13px 22px;
-  border-radius:8px;
   font-weight:700;
+  font-size:14px;
+  letter-spacing:.03em;
+}
+
+.footer-mark{
+  margin-top:78px;
+  border-top:1px solid rgba(212,175,55,.35);
+  padding-top:40px;
+}
+
+.footer-mark img{
+  width:170px;
+  max-width:70%;
 }
 
 .cart{
@@ -326,7 +380,6 @@ about
 
 @media(max-width:1000px){
   .products{grid-template-columns:repeat(2,1fr)}
-  .about{grid-template-columns:1fr}
 }
 
 @media(max-width:600px){
@@ -338,6 +391,37 @@ about
   .products{grid-template-columns:1fr}
   .product-img{height:420px}
   .banner-detail{margin:20px 5%;min-height:420px}
+
+  .about{
+    padding:90px 7% 55px;
+  }
+
+  .about h2{
+    font-size:30px;
+  }
+
+  .about p{
+    font-size:14px;
+    line-height:1.58;
+  }
+
+  .contact-buttons{
+    gap:22px;
+    margin-top:36px;
+  }
+
+  .contact-buttons button{
+    min-width:230px;
+    font-size:13px;
+  }
+
+  .footer-mark{
+    margin-top:62px;
+  }
+
+  .footer-mark img{
+    width:150px;
+  }
 }
 </style>
 </head>
@@ -413,7 +497,7 @@ about
         🟢 FALAR NO WHATSAPP
       </button>
 
-      <button onclick="window.open('https://instagram.com/MAVIEN.MAVIA')">
+      <button onclick="window.open('https://instagram.com/mavien.mavia')">
         📷 @MAVIEN.MAVIA
       </button>
     </div>
@@ -423,6 +507,7 @@ about
     </div>
   </div>
 </section>
+
 <div class="cart" id="cart">
   <button class="close-cart" onclick="toggleCart()">×</button>
   <h2>Seu Carrinho</h2>
