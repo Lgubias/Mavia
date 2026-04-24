@@ -5,93 +5,119 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MAVIEN | Loja</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 
 body{
-  background:#0b0b0b;
+  background:#080808;
   color:#fff;
   font-family:'Montserrat',sans-serif;
 }
 
+button{cursor:pointer;font-family:inherit}
+
 header{
-  height:92px;
+  height:86px;
+  background:#050505;
+  border-bottom:1px solid rgba(212,175,55,.22);
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:0 7%;
-  background:#080808;
-  border-bottom:1px solid rgba(212,175,55,.25);
+  padding:0 6%;
+  position:sticky;
+  top:0;
+  z-index:100;
 }
 
-.logo img{
-  height:76px;
+.menu-btn,.cart-icon{
+  background:none;
+  border:none;
+  color:#d4af37;
+  font-size:34px;
+}
+
+.header-logo img{
+  height:62px;
   object-fit:contain;
 }
 
-nav{
+.side-menu{
+  position:fixed;
+  top:0;
+  left:-300px;
+  width:290px;
+  height:100vh;
+  background:#070707;
+  border-right:1px solid rgba(212,175,55,.25);
+  z-index:200;
+  padding:28px;
+  transition:.3s;
   display:flex;
+  flex-direction:column;
   gap:22px;
-  align-items:center;
 }
 
-nav a, nav button{
-  color:#eee;
+.side-menu.active{left:0}
+
+.side-menu img{
+  width:150px;
+  margin:20px auto 25px;
+}
+
+.side-menu a,.side-menu button{
+  color:#f4e8cf;
   background:none;
   border:none;
-  font-size:15px;
-  cursor:pointer;
+  text-align:left;
+  font-size:18px;
+  text-decoration:none;
 }
 
-.cart-btn{
-  background:#d4af37!important;
-  color:#111!important;
-  padding:12px 22px;
-  border-radius:30px;
-  font-weight:600;
+.close-menu{
+  align-self:flex-end;
+  color:white!important;
+  font-size:34px!important;
 }
 
 .hero{
-  height:82vh;
+  min-height:650px;
   background:
-    linear-gradient(rgba(0,0,0,.28),rgba(0,0,0,.72)),
+    linear-gradient(rgba(0,0,0,.20),rgba(0,0,0,.76)),
     url('capa-mavien.jpg') center 18%/cover no-repeat;
   display:flex;
   align-items:center;
   justify-content:center;
   text-align:center;
-  padding:20px;
+  padding:40px 20px;
 }
 
 .hero-content img{
-  width:280px;
-  max-width:80%;
-  margin-bottom:25px;
-  filter:drop-shadow(0 0 18px rgba(212,175,55,.25));
+  width:145px;
+  max-width:44%;
+  margin-bottom:22px;
+  filter:drop-shadow(0 0 16px rgba(212,175,55,.28));
 }
 
 .hero p{
-  margin-top:12px;
-  color:#eee2c8;
-  font-size:20px;
-  letter-spacing:.03em;
+  color:#f1e6d3;
+  font-size:22px;
+  margin-bottom:30px;
 }
 
-.hero button{
-  margin-top:30px;
+.gold-btn{
   background:#d4af37;
   color:#111;
   border:none;
+  border-radius:999px;
   padding:15px 34px;
-  border-radius:40px;
-  font-weight:600;
-  cursor:pointer;
+  font-weight:700;
+  box-shadow:0 10px 28px rgba(212,175,55,.18);
 }
 
 .section{
-  padding:60px 7%;
+  padding:60px 6%;
 }
 
 .section-title{
@@ -99,58 +125,59 @@ nav a, nav button{
   margin-bottom:28px;
 }
 
-.section-title h2{
-  font-family:'Playfair Display',serif;
+.section-title small{
   color:#d4af37;
-  font-size:44px;
-  margin-bottom:10px;
+  font-weight:700;
+  letter-spacing:2px;
+  text-transform:uppercase;
 }
 
-.section-title p{
-  color:#bdb7aa;
+.section-title h2{
+  font-family:'Playfair Display',serif;
+  color:#fff;
+  font-size:42px;
+  margin-top:8px;
 }
 
 .categories{
   display:flex;
-  justify-content:center;
   flex-wrap:wrap;
-  gap:12px;
-  margin-bottom:35px;
+  justify-content:center;
+  gap:14px;
+  margin-bottom:34px;
 }
 
 .categories button{
-  border:none;
-  padding:12px 22px;
-  border-radius:30px;
-  background:#1a1a1a;
-  color:#ddd;
-  cursor:pointer;
-  border:1px solid rgba(212,175,55,.25);
+  border:1px solid rgba(212,175,55,.22);
+  background:#101010;
+  color:#f0eadf;
+  border-radius:999px;
+  padding:12px 28px;
+  font-weight:600;
 }
 
 .categories button.active{
   background:#d4af37;
   color:#111;
-  font-weight:600;
 }
 
 .products{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:24px;
+  gap:22px;
 }
 
 .product{
   background:#111;
-  border:1px solid rgba(212,175,55,.22);
-  border-radius:16px;
+  border:1px solid rgba(212,175,55,.18);
+  border-radius:15px;
   overflow:hidden;
-  box-shadow:0 0 25px rgba(212,175,55,.08);
+  box-shadow:0 0 24px rgba(212,175,55,.06);
 }
 
 .product-img{
-  height:360px;
-  background:#181818;
+  height:300px;
+  background:#191919;
 }
 
 .product-img img{
@@ -161,87 +188,114 @@ nav a, nav button{
 }
 
 .product-info{
-  padding:18px;
+  padding:16px;
 }
 
 .product-info small{
   color:#d4af37;
-  text-transform:uppercase;
+  font-weight:700;
   font-size:11px;
-  letter-spacing:1.5px;
+  letter-spacing:1.4px;
+  text-transform:uppercase;
 }
 
 .product-info h3{
+  font-size:16px;
   margin:8px 0;
-  font-size:17px;
 }
 
 .product-info p{
-  color:#bbb;
+  color:#bdb7aa;
   font-size:13px;
-  line-height:1.5;
-  margin-bottom:12px;
+  line-height:1.45;
+  margin-bottom:10px;
 }
 
 .price{
   font-family:'Playfair Display',serif;
   color:#d4af37;
-  font-size:23px;
-  margin-bottom:14px;
+  font-size:24px;
+  margin-bottom:12px;
 }
 
 .product-info button{
   width:100%;
-  border:none;
   background:#d4af37;
   color:#111;
+  border:none;
+  border-radius:9px;
   padding:12px;
-  border-radius:10px;
-  font-weight:600;
-  cursor:pointer;
+  font-weight:700;
 }
 
-.banner-final{
-  margin:40px 7% 0;
-  min-height:560px;
-  border-radius:26px;
-  overflow:hidden;
+.banner-detail{
+  margin:20px 6% 0;
+  min-height:360px;
+  border-radius:22px;
   border:1px solid rgba(212,175,55,.25);
+  overflow:hidden;
   background:
-    linear-gradient(rgba(0,0,0,.12),rgba(0,0,0,.42)),
-    url('look2.jpg') center top/cover no-repeat;
-}
-
-.final{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  background:#111;
-  border-top:1px solid rgba(212,175,55,.22);
-  margin-top:60px;
-}
-
-.final-text{
-  padding:70px 7%;
+    linear-gradient(90deg, rgba(0,0,0,.75), rgba(0,0,0,.15)),
+    url('look2.jpg') center 18%/cover no-repeat;
   display:flex;
-  flex-direction:column;
+  align-items:center;
+  padding:36px;
+}
+
+.banner-detail h2{
+  font-family:'Playfair Display',serif;
+  color:white;
+  font-size:42px;
+  line-height:1.1;
+}
+
+.banner-detail span{color:#d4af37}
+
+.about{
+  display:grid;
+  grid-template-columns:1fr .7fr;
+  gap:30px;
+  padding:56px 6%;
+  align-items:center;
+}
+
+.about h2{
+  font-family:'Playfair Display',serif;
+  color:white;
+  font-size:38px;
+  margin-bottom:14px;
+}
+
+.about small{
+  color:#d4af37;
+  font-weight:700;
+  letter-spacing:2px;
+}
+
+.about p{
+  color:#cfc7b8;
+  line-height:1.8;
+  max-width:520px;
+}
+
+.about-logo{
+  display:flex;
   justify-content:center;
 }
 
-.final-text h2{
-  font-family:'Playfair Display',serif;
+.about-logo img{
+  width:180px;
+  max-width:80%;
+}
+
+.whats{
+  margin-top:20px;
+  border:1px solid #d4af37;
+  background:none;
   color:#d4af37;
-  font-size:42px;
-  margin-bottom:18px;
-}
-
-.final-text p{
-  color:#cfc7b8;
-  line-height:1.8;
-}
-
-.final-img{
-  min-height:620px;
-  background:url('look2.jpg') center top/cover no-repeat;
+  padding:13px 22px;
+  border-radius:8px;
+  font-weight:700;
 }
 
 .cart{
@@ -254,7 +308,7 @@ nav a, nav button{
   background:#0d0d0d;
   border-left:1px solid rgba(212,175,55,.25);
   transition:.3s;
-  z-index:50;
+  z-index:300;
   padding:22px;
   overflow:auto;
 }
@@ -267,18 +321,26 @@ nav a, nav button{
   margin-bottom:20px;
 }
 
-.close{
+.close-cart{
   float:right;
   background:none;
   color:white;
   border:none;
-  font-size:26px;
-  cursor:pointer;
+  font-size:30px;
 }
 
 .cart-item{
   border-bottom:1px solid rgba(212,175,55,.18);
   padding:14px 0;
+}
+
+.cart-item button{
+  margin-top:8px;
+  background:#1c1c1c;
+  color:#d4af37;
+  border:1px solid rgba(212,175,55,.2);
+  padding:8px 10px;
+  border-radius:8px;
 }
 
 .total{
@@ -294,24 +356,23 @@ nav a, nav button{
   border:none;
   padding:14px;
   border-radius:12px;
-  font-weight:600;
-  cursor:pointer;
+  font-weight:700;
 }
 
 @media(max-width:1000px){
   .products{grid-template-columns:repeat(2,1fr)}
-  .final{grid-template-columns:1fr}
+  .about{grid-template-columns:1fr}
 }
 
 @media(max-width:600px){
-  header{height:86px;padding:0 5%}
-  .logo img{height:66px}
-  nav a{display:none}
-  .hero-content img{width:230px}
-  .hero p{font-size:17px}
+  header{height:78px}
+  .header-logo img{height:56px}
+  .hero{min-height:580px}
+  .hero-content img{width:120px}
+  .hero p{font-size:18px}
   .products{grid-template-columns:1fr}
   .product-img{height:420px}
-  .banner-final{min-height:520px;margin:30px 5% 0}
+  .banner-detail{margin:20px 5%;min-height:420px}
 }
 </style>
 </head>
@@ -319,29 +380,37 @@ nav a, nav button{
 <body>
 
 <header>
-  <div class="logo">
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+  <div class="header-logo">
     <img src="logo-mavien.png" alt="MAVIEN">
   </div>
 
-  <nav>
-    <a href="#catalogo">Catálogo</a>
-    <a href="#sobre">Sobre</a>
-    <button class="cart-btn" onclick="toggleCart()">Carrinho 🛒</button>
-  </nav>
+  <button class="cart-icon" onclick="toggleCart()">🛒</button>
 </header>
+
+<div class="side-menu" id="sideMenu">
+  <button class="close-menu" onclick="toggleMenu()">×</button>
+  <img src="logo-mavien.png" alt="MAVIEN">
+  <a href="#catalogo" onclick="toggleMenu()">Catálogo</a>
+  <a href="#sobre" onclick="toggleMenu()">Sobre a MAVIEN</a>
+  <button onclick="toggleCart(); toggleMenu()">Carrinho 🛒</button>
+</div>
 
 <section class="hero">
   <div class="hero-content">
     <img src="logo-mavien.png" alt="MAVIEN">
     <p>Elegância, sofisticação e exclusividade</p>
-    <button onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">Ver peças</button>
+    <button class="gold-btn" onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">
+      VER PEÇAS
+    </button>
   </div>
 </section>
 
 <section class="section" id="catalogo">
   <div class="section-title">
-    <h2>Catálogo</h2>
-    <p>Escolha suas peças favoritas e adicione ao carrinho</p>
+    <small>Catálogo</small>
+    <h2>Nossas peças</h2>
   </div>
 
   <div class="categories">
@@ -351,23 +420,31 @@ nav a, nav button{
     <button onclick="filterProducts('calcas', this)">Calças</button>
     <button onclick="filterProducts('saias', this)">Saias</button>
     <button onclick="filterProducts('blazers', this)">Blazers</button>
+    <button onclick="filterProducts('conjuntos', this)">Conjuntos</button>
   </div>
 
   <div class="products" id="products"></div>
 </section>
 
-<div class="banner-final"></div>
+<div class="banner-detail">
+  <h2>Sofisticação<br><span>em cada detalhe</span></h2>
+</div>
 
-<section class="final" id="sobre">
-  <div class="final-text">
-    <h2>Estilo MAVIEN</h2>
+<section class="about" id="sobre">
+  <div>
+    <small>MAVIEN</small>
+    <h2>Sobre a MAVIEN</h2>
     <p>Peças selecionadas para mulheres que gostam de presença, elegância e sofisticação. Um catálogo visual, prático e com compra rápida pelo WhatsApp.</p>
+    <button class="whats" onclick="window.open('https://wa.me/5500000000000')">FALAR NO WHATSAPP</button>
   </div>
-  <div class="final-img"></div>
+
+  <div class="about-logo">
+    <img src="logo-mavien.png" alt="MAVIEN">
+  </div>
 </section>
 
 <div class="cart" id="cart">
-  <button class="close" onclick="toggleCart()">×</button>
+  <button class="close-cart" onclick="toggleCart()">×</button>
   <h2>Seu Carrinho</h2>
   <div id="cartItems"></div>
   <div class="total">Total: R$ <span id="total">0,00</span></div>
@@ -376,38 +453,18 @@ nav a, nav button{
 
 <script>
 const produtos = [
-  {
-    id:1,
-    categoria:"blazers",
-    nome:"Look Sofisticado Bege",
-    descricao:"Composição elegante com tons neutros e acabamento refinado.",
-    preco:129.90,
-    imagem:"look1.jpg"
-  },
-  {
-    id:2,
-    categoria:"calcas",
-    nome:"Calça Alfaiataria Bege",
-    descricao:"Modelagem elegante, ideal para looks sofisticados.",
-    preco:159.90,
-    imagem:"look2.jpg"
-  },
-  {
-    id:3,
-    categoria:"blusas",
-    nome:"Blusa Elegance",
-    descricao:"Peça versátil para composições clássicas e femininas.",
-    preco:89.90,
-    imagem:"look2.jpg"
-  },
-  {
-    id:4,
-    categoria:"saias",
-    nome:"Saia Glam",
-    descricao:"Visual sofisticado com toque de brilho e presença.",
-    preco:119.90,
-    imagem:"look1.jpg"
-  }
+  {id:1,categoria:"blazers",nome:"Look Sofisticado Bege",descricao:"Composição elegante em tons neutros.",preco:129.90,imagem:"look1.jpg"},
+  {id:2,categoria:"calcas",nome:"Calça Alfaiataria Bege",descricao:"Modelagem elegante e feminina.",preco:159.90,imagem:"look2.jpg"},
+  {id:3,categoria:"blusas",nome:"Blusa Elegance Off-White",descricao:"Peça clássica para looks sofisticados.",preco:89.90,imagem:"produto-03.jpg"},
+  {id:4,categoria:"saias",nome:"Saia Plissada Rosé",descricao:"Delicada, feminina e elegante.",preco:119.90,imagem:"produto-04.jpg"},
+  {id:5,categoria:"vestidos",nome:"Vestido Midi Floral",descricao:"Vestido leve com estampa delicada.",preco:169.90,imagem:"produto-05.jpg"},
+  {id:6,categoria:"blusas",nome:"Blusa Cetim Champagne",descricao:"Toque acetinado e acabamento premium.",preco:99.90,imagem:"produto-06.jpg"},
+  {id:7,categoria:"calcas",nome:"Calça Wide Leg Preta",descricao:"Elegante, moderna e confortável.",preco:159.90,imagem:"produto-07.jpg"},
+  {id:8,categoria:"blazers",nome:"Blazer Alfaiataria Preto",descricao:"Peça poderosa para composições premium.",preco:219.90,imagem:"produto-08.jpg"},
+  {id:9,categoria:"vestidos",nome:"Vestido Longo Festa",descricao:"Visual sofisticado para ocasiões especiais.",preco:289.90,imagem:"produto-09.jpg"},
+  {id:10,categoria:"conjuntos",nome:"Conjunto Alfaiataria Bege",descricao:"Conjunto elegante em tom neutro.",preco:249.90,imagem:"produto-10.jpg"},
+  {id:11,categoria:"blusas",nome:"Blusa Manga Bufante",descricao:"Romântica, elegante e versátil.",preco:109.90,imagem:"produto-11.jpg"},
+  {id:12,categoria:"saias",nome:"Saia Midi Cetim",descricao:"Brilho sofisticado e caimento leve.",preco:139.90,imagem:"produto-12.jpg"}
 ];
 
 let carrinho = [];
@@ -436,7 +493,7 @@ function renderProducts(){
           <h3>${p.nome}</h3>
           <p>${p.descricao}</p>
           <div class="price">R$ ${formatPrice(p.preco)}</div>
-          <button onclick="addCart(${p.id})">Adicionar ao carrinho</button>
+          <button onclick="addCart(${p.id})">Adicionar ao carrinho 🛒</button>
         </div>
       </div>
     `;
@@ -491,6 +548,10 @@ function removeItem(i){
 
 function toggleCart(){
   document.getElementById("cart").classList.toggle("active");
+}
+
+function toggleMenu(){
+  document.getElementById("sideMenu").classList.toggle("active");
 }
 
 function checkout(){
