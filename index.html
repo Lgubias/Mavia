@@ -23,7 +23,7 @@ body{
 button{cursor:pointer;font-family:inherit}
 
 header{
-  height:46px;
+  height:110px; /* antes era ~86 */
   background:#050505;
   border-bottom:1px solid rgba(212,175,55,.22);
   display:flex;
@@ -137,31 +137,30 @@ header{
 }
 
 .hero{
-  min-height:calc(90vh - 86px);
+  min-height:calc(100vh - 110px);
   background:
-    linear-gradient(rgba(0,0,0,.25),rgba(0,0,0,.88)),
+    linear-gradient(rgba(0,0,0,.15),rgba(0,0,0,.85)),
     url('capa-mavien.jpg') center top/cover no-repeat;
   display:flex;
   align-items:flex-end;
   justify-content:center;
   text-align:center;
-  padding:60px 40px 120px;
+  padding:40px 20px 70px; /* menos espaço embaixo */
 }
-
+  
 .hero-content img{
-  width:240px;
-  max-width:40%;
-  margin-bottom:32px;
-  filter:drop-shadow(0 0 16px rgba(212,175,55,.28));
+  width:260px; /* maior */
+  max-width:75%;
+  margin-top:120px; /* empurra pra baixo */
+  margin-bottom:30px;
+  filter:drop-shadow(0 0 18px rgba(212,175,55,.28));
 }
-
+  
 .hero p{
   color:#ffffff;
-  font-size:24px;
-  font-weight:400;
-  line-height:1.35;
-  margin-bottom:90px;
-  max-width:420px;
+  font-size:22px;
+  margin-bottom:18px; /* aproxima do botão */
+  margin-top:10px;
 }
 
 .hero p strong{
@@ -174,8 +173,10 @@ header{
   color:#111;
   border:none;
   border-radius:999px;
-  padding:17px 42px;
+  padding:16px 38px;
   font-weight:700;
+  font-size:15px;
+  margin-top:5px; /* quase grudado */
 }
 
 /* CATÁLOGO */
