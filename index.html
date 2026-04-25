@@ -876,6 +876,8 @@ Compre de forma prática pelo WhatsApp ou Instagram. Entregamos com agilidade e 
 </div>
 
 <script>
+const WHATSAPP_NUMERO = "5500000000000";
+
 const produtos = [
   {id:1,categoria:"vestidos",nome:"Vestido Balada Preto",descricao:"Look fácil para sair à noite.",preco:189.90,imagem:"produto-01.jpg"},
   {id:2,categoria:"saia",nome:"Saia Curta Preta",descricao:"Peça básica para compor looks.",preco:79.90,imagem:"produto-02.jpg"},
@@ -894,23 +896,236 @@ const produtos = [
   {id:15,categoria:"vestidos",nome:"Vestido Justo Preto",descricao:"Look certeiro para balada.",preco:139.90,imagem:"produto-15.jpg"},
   {id:16,categoria:"blusa",nome:"Top Alcinha",descricao:"Leve, básico e bonito.",preco:49.90,imagem:"produto-16.jpg"},
 
-  {id:17,categoria:"vestidos",nome:"Vestido Vermelho Curto",descricao:"Para chegar chamando atenção.",preco:149.90,imagem:"produto-17.jpg"},
-  {id:18,categoria:"cropped",nome:"Cropped Rosa",descricao:"Delicado e fácil de combinar.",preco:59.90,imagem:"produto-18.jpg"},
-  {id:19,categoria:"saia",nome:"Saia Jeans",descricao:"Casual com toque feminino.",preco:89.90,imagem:"produto-19.jpg"},
-  {id:20,categoria:"calcas",nome:"Calça Pantalona",descricao:"Confortável e estilosa.",preco:169.90,imagem:"produto-20.jpg"},
-  {id:21,categoria:"conjuntos",nome:"Conjunto Preto",descricao:"Look pronto sem esforço.",preco:219.90,imagem:"produto-21.jpg"},
-  {id:22,categoria:"macacao",nome:"Macacão Nude",descricao:"Prático e marcante.",preco:199.90,imagem:"produto-22.jpg"},
-  {id:23,categoria:"blusa",nome:"Blusa Cetim",descricao:"Básica com toque arrumado.",preco:99.90,imagem:"produto-23.jpg"},
-  {id:24,categoria:"short",nome:"Short Jeans",descricao:"Peça essencial para o dia a dia.",preco:69.90,imagem:"produto-24.jpg"},
-  {id:25,categoria:"jeans",nome:"Jeans Claro",descricao:"Combina com tudo.",preco:129.90,imagem:"produto-25.jpg"},
-  {id:26,categoria:"vestidos",nome:"Vestido Floral",descricao:"Leve e feminino.",preco:119.90,imagem:"produto-26.jpg"},
-  {id:27,categoria:"cropped",nome:"Cropped Nude",descricao:"Básico bonito para sair.",preco:55.90,imagem:"produto-27.jpg"},
-  {id:28,categoria:"saia",nome:"Saia Plissada",descricao:"Movimento e delicadeza.",preco:109.90,imagem:"produto-28.jpg"},
-  {id:29,categoria:"acessorios",nome:"Cinto Dourado",descricao:"Dá acabamento ao look.",preco:39.90,imagem:"produto-29.jpg"},
-  {id:30,categoria:"agasalhos",nome:"Jaqueta Curta",descricao:"Finaliza o visual sem pesar.",preco:159.90,imagem:"produto-30.jpg"},
-  {id:31,categoria:"blusa",nome:"Body Preto",descricao:"Peça prática para noite.",preco:89.90,imagem:"produto-31.jpg"},
-  {id:32,categoria:"vestidos",nome:"Vestido Tubinho",descricao:"Clássico para sair.",preco:129.90,imagem:"produto-32.jpg"}
+  {
+    id:17,
+    categoria:"agasalhos",
+    nome:"Jaqueta Fanny",
+    descricao:"Jaqueta com brilho e zíper frontal.",
+    preco:123.00,
+    imagens:[
+      "Screenshot_20260425_192451_ZAX.jpg",
+      "Screenshot_20260425_192416_ZAX.jpg",
+      "Screenshot_20260425_192326_ZAX.jpg"
+    ]
+  },
+
+  {
+    id:18,
+    categoria:"conjuntos",
+    nome:"Conjunto Couro Jodie",
+    descricao:"Conjunto moderno com jaqueta e calça.",
+    preco:123.00,
+    imagens:[
+      "Screenshot_20260425_200137_ZAX.jpg",
+      "Screenshot_20260425_200106_ZAX.jpg"
+    ]
+  },
+
+  {
+    id:19,
+    categoria:"conjuntos",
+    nome:"Vestido + Jaqueta Elie",
+    descricao:"Vestido com jaqueta em couro ecológico.",
+    preco:113.00,
+    imagens:[
+      "Screenshot_20260425_200517_ZAX.jpg",
+      "Screenshot_20260425_200529_ZAX.jpg",
+      "Screenshot_20260425_200539_ZAX.jpg"
+    ]
+  }
 ];
+
+let cart = [];
+let currentPage = 1;
+let currentFilter = "todos";
+let currentSort = "menor";
+const perPage = 16;
+
+function getImagemProduto(produto){
+  if(produto.imagens && produto.imagens.length > 0){
+    return produto.imagens[0];
+  }
+  return produto.imagem;
+}
+
+function renderProducts(){
+  const container = document.getElementById("products");
+  const pagination = document.getElementById("pagination");
+
+  let lista = [...produtos];
+
+  if(currentFilter !== "todos"){
+    lista = lista.filter(p => p.categoria === currentFilter);
+  }
+
+  if(currentSort === "menor"){
+    lista.sort((a,b) => a.preco - b.preco);
+  }
+
+  if(currentSort === "maior"){
+    lista.sort((a,b) => b.preco - a.preco);
+  }
+
+  const totalPages = Math.ceil(lista.length / perPage);
+  const start = (currentPage - 1) * perPage;
+  const pageItems = lista.slice(start, start + perPage);
+
+  container.innerHTML = pageItems.map(produto => `
+    <div class="product">
+      <div class="product-img">
+        <img src="${getImagemProduto(produto)}" alt="${produto.nome}">
+      </div>
+
+      <div class="product-info">
+        <small>${produto.categoria}</small>
+        <h3>${produto.nome}</h3>
+        <p>${produto.descricao}</p>
+        <div class="price">R$ ${produto.preco.toFixed(2).replace(".", ",")}</div>
+        <button onclick="addToCart(${produto.id})">Adicionar</button>
+      </div>
+    </div>
+  `).join("");
+
+  pagination.innerHTML = "";
+
+  for(let i = 1; i <= totalPages; i++){
+    pagination.innerHTML += `
+      <button class="${i === currentPage ? "active" : ""}" onclick="goToPage(${i})">${i}</button>
+    `;
+  }
+}
+
+function goToPage(page){
+  currentPage = page;
+  renderProducts();
+}
+
+function filterProducts(categoria, label){
+  currentFilter = categoria;
+  currentPage = 1;
+
+  const filterLabel = document.getElementById("filterLabel");
+  if(filterLabel) filterLabel.innerText = label;
+
+  closeDropdowns();
+  renderProducts();
+
+  const catalogo = document.getElementById("catalogo");
+  if(catalogo) catalogo.scrollIntoView({behavior:"smooth"});
+}
+
+function sortProducts(tipo, label){
+  currentSort = tipo;
+  currentPage = 1;
+
+  const sortLabel = document.getElementById("sortLabel");
+  if(sortLabel) sortLabel.innerText = label;
+
+  closeDropdowns();
+  renderProducts();
+}
+
+function toggleDropdown(id){
+  const menu = document.getElementById(id);
+  if(!menu) return;
+
+  document.querySelectorAll(".dropdown-menu").forEach(item => {
+    if(item.id !== id) item.classList.remove("active");
+  });
+
+  menu.classList.toggle("active");
+}
+
+function closeDropdowns(){
+  document.querySelectorAll(".dropdown-menu").forEach(menu => {
+    menu.classList.remove("active");
+  });
+}
+
+function toggleMenu(){
+  document.getElementById("sideMenu").classList.toggle("active");
+}
+
+function toggleCart(){
+  document.getElementById("cart").classList.toggle("active");
+}
+
+function addToCart(id){
+  const produto = produtos.find(p => p.id === id);
+  if(!produto) return;
+
+  cart.push(produto);
+  renderCart();
+  toggleCart();
+}
+
+function removeFromCart(index){
+  cart.splice(index, 1);
+  renderCart();
+}
+
+function renderCart(){
+  const cartItems = document.getElementById("cartItems");
+  const total = document.getElementById("total");
+
+  cartItems.innerHTML = cart.map((item, index) => `
+    <div class="cart-item">
+      <strong>${item.nome}</strong><br>
+      <span>R$ ${item.preco.toFixed(2).replace(".", ",")}</span><br>
+      <button onclick="removeFromCart(${index})">Remover</button>
+    </div>
+  `).join("");
+
+  const soma = cart.reduce((acc, item) => acc + item.preco, 0);
+  total.innerText = soma.toFixed(2).replace(".", ",");
+}
+
+function checkout(){
+  if(cart.length === 0){
+    alert("Seu carrinho está vazio.");
+    return;
+  }
+
+  let mensagem = "Olá! Quero consultar disponibilidade dessas peças:%0A%0A";
+
+  cart.forEach(item => {
+    mensagem += `• ${item.nome} - R$ ${item.preco.toFixed(2).replace(".", ",")}%0A`;
+  });
+
+  mensagem += "%0AAs peças são sob encomenda? Quero verificar cores e tamanhos disponíveis.";
+
+  window.open(`https://wa.me/${WHATSAPP_NUMERO}?text=${mensagem}`, "_blank");
+}
+
+let slideIndex = 0;
+
+function startSlider(){
+  const slides = document.querySelectorAll(".slide");
+  const dots = document.querySelectorAll("#sliderDots span");
+
+  if(slides.length === 0) return;
+
+  setInterval(() => {
+    slides[slideIndex].classList.remove("active");
+    if(dots[slideIndex]) dots[slideIndex].classList.remove("active");
+
+    slideIndex = (slideIndex + 1) % slides.length;
+
+    slides[slideIndex].classList.add("active");
+    if(dots[slideIndex]) dots[slideIndex].classList.add("active");
+  }, 3500);
+}
+
+document.addEventListener("click", function(e){
+  if(!e.target.closest(".dropdown")){
+    closeDropdowns();
+  }
+});
+
+renderProducts();
+renderCart();
+startSlider();
+</script>
 
 let carrinho = [];
 let categoriaAtual = "todos";
