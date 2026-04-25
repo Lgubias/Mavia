@@ -122,8 +122,106 @@ header{
 
 /* MOBILE */
 @media(max-width:600px){
-  .products{
-    grid-template-columns:repeat(2,1fr);
+ .modal-produto{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.88);
+  z-index:999;
+  padding:20px;
+  overflow:auto;
+}
+
+.modal-produto.active{
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+}
+
+.modal-box{
+  background:#0d0d0d;
+  border:1px solid rgba(212,175,55,.35);
+  border-radius:18px;
+  max-width:950px;
+  width:100%;
+  padding:22px;
+  margin-top:30px;
+  position:relative;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:26px;
+}
+
+.fechar-modal{
+  position:absolute;
+  top:12px;
+  right:16px;
+  background:none;
+  border:none;
+  color:#fff;
+  font-size:34px;
+}
+
+.galeria-produto img{
+  width:100%;
+  border-radius:14px;
+  object-fit:cover;
+}
+
+#imagemPrincipal{
+  height:520px;
+}
+
+.miniaturas{
+  display:flex;
+  gap:10px;
+  margin-top:12px;
+}
+
+.miniaturas img{
+  width:78px;
+  height:90px;
+  object-fit:cover;
+  border:1px solid rgba(212,175,55,.35);
+  cursor:pointer;
+}
+
+.detalhes-produto h2{
+  font-family:'Playfair Display',serif;
+  font-size:34px;
+  color:#f4e8cf;
+  margin-bottom:12px;
+}
+
+.modalPreco{
+  color:#d4af37;
+  font-family:'Playfair Display',serif;
+  font-size:34px;
+  margin-bottom:18px;
+}
+
+.detalhes-produto p{
+  color:#ddd2bf;
+  line-height:1.6;
+  margin-bottom:18px;
+}
+
+.descricao-box{
+  border:1px solid rgba(212,175,55,.25);
+  border-radius:12px;
+  padding:16px;
+  margin-bottom:22px;
+}
+
+@media(max-width:700px){
+  .modal-box{
+    grid-template-columns:1fr;
+  }
+
+  #imagemPrincipal{
+    height:460px;
+  }
+}
   }
 }
 </style>
@@ -151,8 +249,42 @@ header{
 </section>
 
 <script>
+  <div class="modal-produto" id="modalProduto">
+  <div class="modal-box">
+    <button class="fechar-modal" onclick="fecharProduto()">×</button>
+
+    <div class="galeria-produto">
+      <img id="imagemPrincipal" src="" alt="Produto">
+      <div class="miniaturas" id="miniaturas"></div>
+    </div>
+
+    <div class="detalhes-produto">
+      <h2 id="modalNome"></h2>
+      <div class="modalPreco" id="modalPreco"></div>
+      <p id="modalDescricao"></p>
+      <div class="descricao-box">
+        <strong>Descrição</strong>
+        <p id="modalDetalhes"></p>
+      </div>
+
+      <button class="gold-btn" onclick="adicionarProdutoModal()">Adicionar ao carrinho 🛒</button>
+    </div>
+  </div>
+</div>
 const produtos = [
-  {id:1,nome:"Vestido Preto",preco:89.90,imagem:"produto1.jpg"},
+  {
+  id:1,
+  nome:"Jaqueta Fanny",
+  preco:123.00,
+  imagem:"Screenshot_20260425_192326_ZAX.jpg",
+  imagens:[
+    "Screenshot_20260425_192326_ZAX.jpg",
+    "Screenshot_20260425_192416_ZAX.jpg",
+    "Screenshot_20260425_192451_ZAX.jpg"
+  ],
+  descricao:"Jaqueta Fanny com brilho, zíper frontal, forro interno e modelagem moderna.",
+  detalhes:"Tamanho único, veste aproximadamente 38/40. Peça estilosa para compor looks de balada, saída à noite ou produções mais chamativas. Disponível em cores conforme disponibilidade."
+},
   {id:2,nome:"Cropped Branco",preco:49.90,imagem:"produto2.jpg"},
   {id:3,nome:"Saia Jeans",preco:79.90,imagem:"produto3.jpg"},
   {id:4,nome:"Conjunto Nude",preco:129.90,imagem:"produto4.jpg"},
