@@ -9,7 +9,6 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-
 html{scroll-behavior:smooth;}
 
 body{
@@ -25,8 +24,7 @@ header{
   border-bottom:1px solid rgba(212,175,55,.2);
   display:flex;
   align-items:center;
-  justify-content:space-between;
-  padding:0 6%;
+  justify-content:center;
 }
 
 .header-logo img{
@@ -35,6 +33,236 @@ header{
 
 /* HERO */
 .hero{
+  min-height:calc(100vh - 100px);
+  background:
+    linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.8)),
+    url('capa-mavien.jpg') center/cover;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  text-align:center;
+  padding:60px 20px;
+}
+
+.hero-content img{
+  width:240px;
+  margin-bottom:20px;
+}
+
+.hero p{
+  font-size:20px;
+  margin-bottom:20px;
+  color:#f1e6d3;
+}
+
+.hero strong{
+  color:#d4af37;
+}
+
+.gold-btn{
+  background:#d4af37;
+  color:#111;
+  border:none;
+  padding:14px 30px;
+  border-radius:30px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+/* CATÁLOGO */
+.section{
+  padding:60px 6%;
+}
+
+.section-title{
+  text-align:center;
+  margin-bottom:30px;
+}
+
+.section-title small{
+  color:#d4af37;
+  letter-spacing:2px;
+}
+
+.section-title h2{
+  font-family:'Playfair Display';
+  font-size:50px;
+}
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:16px;
+}
+
+.product{
+  background:#111;
+  border-radius:12px;
+  overflow:hidden;
+  cursor:pointer;
+}
+
+.product img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+}
+
+.product-info{
+  padding:12px;
+  text-align:center;
+}
+
+.price{
+  color:#d4af37;
+  font-size:20px;
+}
+
+/* MODAL */
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.95);
+  z-index:999;
+  padding:20px;
+}
+
+.modal.active{
+  display:block;
+}
+
+.modal-box{
+  max-width:600px;
+  margin:auto;
+}
+
+.modal img{
+  width:100%;
+  margin-bottom:10px;
+  border-radius:10px;
+}
+
+.close{
+  font-size:30px;
+  cursor:pointer;
+  float:right;
+}
+
+/* MOBILE */
+@media(max-width:600px){
+  .products{
+    grid-template-columns:1fr 1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-logo">
+    <img src="logo-mavien.png">
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <img src="logo-mavien.png">
+    <p>Looks que valorizam você<br><strong>sem esforço</strong></p>
+    <button class="gold-btn" onclick="scrollToCatalog()">VER PEÇAS</button>
+  </div>
+</section>
+
+<section class="section" id="catalogo">
+  <div class="section-title">
+    <small>CATÁLOGO</small>
+    <h2>Nossas peças</h2>
+  </div>
+
+  <div class="products" id="products"></div>
+</section>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <span class="close" onclick="fechar()">×</span>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<script>
+
+const produtos = [
+{
+  id:1,
+  nome:"Jaqueta Fanny",
+  preco:123.00,
+  imagens:[
+    "Screenshot_20260425_192326_ZAX.jpg",
+    "Screenshot_20260425_192416_ZAX.jpg",
+    "Screenshot_20260425_192451_ZAX.jpg"
+  ],
+  descricao:"Jaqueta estilosa com brilho e zíper frontal.",
+  aviso:"✨ Produto sob encomenda. Consulte disponibilidade de cores e tamanhos antes da compra."
+}
+];
+
+function render(){
+  const box = document.getElementById("products");
+  box.innerHTML = "";
+
+  produtos.forEach(p=>{
+    box.innerHTML += `
+      <div class="product" onclick="abrir(${p.id})">
+        <img src="${p.imagens[0]}">
+        <div class="product-info">
+          <h3>${p.nome}</h3>
+          <div class="price">R$ ${p.preco}</div>
+        </div>
+      </div>
+    `;
+  });
+}
+
+function abrir(id){
+  const p = produtos.find(x=>x.id==id);
+
+  let html = `
+    ${p.imagens.map(img=>`<img src="${img}">`).join("")}
+    <h2>${p.nome}</h2>
+    <h3 style="color:#d4af37;">R$ ${p.preco}</h3>
+    <p>${p.descricao}</p>
+    <p style="color:#d4af37;">${p.aviso}</p>
+
+    <button class="gold-btn" onclick="comprar('${p.nome}',${p.preco})">
+      Comprar no WhatsApp
+    </button>
+  `;
+
+  document.getElementById("modalContent").innerHTML = html;
+  document.getElementById("modal").classList.add("active");
+}
+
+function fechar(){
+  document.getElementById("modal").classList.remove("active");
+}
+
+function scrollToCatalog(){
+  document.getElementById("catalogo").scrollIntoView();
+}
+
+function comprar(nome, preco){
+  let msg = `Olá, quero comprar: ${nome} - R$ ${preco}`;
+  window.open(`https://wa.me/55SEUNUMERO?text=${msg}`);
+}
+
+render();
+
+</script>
+
+</body>
+</html>.hero{
   min-height:calc(100vh - 100px);
   background:
     linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.8)),
