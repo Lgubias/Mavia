@@ -1077,6 +1077,34 @@ Simples. Direto. Bem pensado. ✨
 </div>
 
 <script>
+  renderProducts();
+  function openProductModal(id){
+  const produto = produtos.find(p => p.id === id);
+  if(!produto) return;
+
+  const imagens = produto.imagens ? produto.imagens : [produto.imagem];
+
+  document.getElementById("modalGallery").innerHTML = imagens.map(img => `
+    <img src="${img}" alt="${produto.nome}">
+  `).join("");
+
+  document.getElementById("modalCategoria").innerText = produto.categoria;
+  document.getElementById("modalNome").innerText = produto.nome;
+  document.getElementById("modalPreco").innerText = "R$ " + produto.preco.toFixed(2).replace(".", ",");
+  document.getElementById("modalDescricao").innerText = produto.descricao;
+
+  const mensagem = `Oi! Quero consultar disponibilidade da peça: ${produto.nome}. Gostaria de saber cores, tamanhos e prazo de envio.`;
+
+  document.getElementById("modalWhatsapp").onclick = function(){
+    window.open(`https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(mensagem)}`, "_blank");
+  };
+
+  document.getElementById("productModal").classList.add("active");
+}
+
+function closeProductModal(){
+  document.getElementById("productModal").classList.remove("active");
+}
 const produtos = [
   {id:1,categoria:"vestidos",nome:"Vestido Balada Preto",descricao:"Look fácil para sair à noite.",preco:189.90,imagem:"produto-01.jpg"},
   {id:2,categoria:"saia",nome:"Saia Curta Preta",descricao:"Peça básica para compor looks.",preco:79.90,imagem:"produto-02.jpg"},
