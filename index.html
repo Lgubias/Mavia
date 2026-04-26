@@ -1067,50 +1067,56 @@ function formatPrice(v){
   return v.toFixed(2).replace(".", ",");
 }
 
+function getImagemProduto(produto){
+  return produto.imagens ? produto.imagens[0] : produto.imagem;
+}
+
 function renderProducts(){
-  const box = document.getElementById("products");
-  box.innerHTML = "";
+  const container = document.getElementById("products");
+  const pagination = document.getElementById("pagination");
 
-  let lista = categoriaAtual === "todos"
-    ? [...produtos]
-    : produtos.filter(p => p.categoria === categoriaAtual);
+  let lista = [...produtos];
 
-  if(ordemAtual === "menor"){
-    lista.sort((a,b)=>a.preco-b.preco);
+  if(currentFilter !== "todos"){
+    lista = lista.filter(p => p.categoria === currentFilter);
   }
 
-  if(ordemAtual === "maior"){
-    lista.sort((a,b)=>b.preco-a.preco);
+  if(currentSort === "menor"){
+    lista.sort((a,b) => a.preco - b.preco);
   }
 
-  const inicio = (paginaAtual - 1) * itensPorPagina;
-  const fim = inicio + itensPorPagina;
-  const paginaItens = lista.slice(inicio, fim);
-
-  if(paginaItens.length === 0){
-    box.innerHTML = "<p style='grid-column:1/-1;text-align:center;color:#d8cfbd;'>Nenhum produto encontrado.</p>";
-    renderPagination(lista);
-    return;
+  if(currentSort === "maior"){
+    lista.sort((a,b) => b.preco - a.preco);
   }
 
-  paginaItens.forEach(p=>{
-    box.innerHTML += `
-      <div class="product">
-        <div class="product-img">
-          <img src="${p.imagem}" alt="${p.nome}">
-        </div>
-        <div class="product-info">
-          <small>${p.categoria}</small>
-          <h3>${p.nome}</h3>
-          <p>${p.descricao}</p>
-          <div class="price">R$ ${formatPrice(p.preco)}</div>
-          <button onclick="openProductModal(${produto.id})">
-  Ver detalhes
-</button>
-        </div>
+  const totalPages = Math.ceil(lista.length / perPage);
+  const start = (currentPage - 1) * perPage;
+  const pageItems = lista.slice(start, start + perPage);
+
+  container.innerHTML = pageItems.map(produto => `
+    <div class="product">
+      <div class="product-img">
+        <img src="${getImagemProduto(produto)}" alt="${produto.nome}">
       </div>
+
+      <div class="product-info">
+        <small>${produto.categoria}</small>
+        <h3>${produto.nome}</h3>
+        <p>${produto.descricao}</p>
+        <div class="price">R$ ${produto.preco.toFixed(2).replace(".", ",")}</div>
+        <button onclick="openProductModal(${produto.id})">Ver detalhes</button>
+      </div>
+    </div>
+  `).join("");
+
+  pagination.innerHTML = "";
+
+  for(let i = 1; i <= totalPages; i++){
+    pagination.innerHTML += `
+      <button class="${i === currentPage ? "active" : ""}" onclick="goToPage(${i})">${i}</button>
     `;
-  });
+  }
+}
 
   renderPagination(lista);
 }
