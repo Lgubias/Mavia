@@ -1053,135 +1053,169 @@ function renderProducts(){
         <button onclick="openProductModal(${produto.id})">Ver detalhes</button>
       </div>
     </div>
+  <div class="product-modal" id="productModal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeProductModal()">×</button>
+    <div class="modal-gallery" id="modalGallery"></div>
+
+    <div class="modal-info">
+      <h2 id="modalTitle"></h2>
+      <p id="modalDesc"></p>
+      <div class="modal-price" id="modalPrice"></div>
+
+      <div class="modal-warning">
+        <strong>Peça sob encomenda ✨</strong><br>
+        Consulte disponibilidade de cores e tamanhos pelo WhatsApp ou Instagram.<br>
+        Prazo de envio: 5 a 10 dias úteis.
+      </div>
+
+      <div class="modal-buttons">
+        <button class="btn-whats" onclick="comprarWhats()">Consultar no WhatsApp</button>
+        <button class="btn-insta" onclick="window.open('https://www.instagram.com/mavi.mavien?igsh=c2M3ZWo1Y3BpMXo3&utm_source=qr')">
+          Ver no Instagram
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.product-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;padding:20px;overflow:auto}
+.product-modal.active{display:block}
+.modal-content{max-width:900px;margin:40px auto;background:#0d0d0d;border-radius:18px;padding:20px;border:1px solid rgba(212,175,55,.3)}
+.modal-close{float:right;font-size:28px;background:none;border:none;color:white}
+.modal-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px}
+.modal-gallery img{width:100%;height:260px;object-fit:cover;border-radius:12px}
+.modal-info{text-align:center}
+.modal-info h2{font-size:26px;margin-bottom:10px}
+.modal-info p{color:#ccc;margin-bottom:12px}
+.modal-price{color:#d4af37;font-size:28px;margin-bottom:20px}
+.modal-warning{background:rgba(212,175,55,.1);padding:15px;border-radius:12px;margin-bottom:20px}
+.modal-warning strong{color:#d4af37}
+.modal-buttons button{width:100%;margin-top:10px;padding:14px;border:none;border-radius:999px;font-weight:700}
+.btn-whats{background:#25D366;color:white}
+.btn-insta{background:#d4af37;color:#111}
+@media(max-width:600px){.modal-gallery{grid-template-columns:1fr}.modal-gallery img{height:420px}}
+</style>
+
+<script>
+const WHATSAPP_NUMERO = "5500000000000";
+
+const produtos = [
+{id:1,categoria:"vestidos",nome:"Vestido Balada Preto",descricao:"Look fácil para sair à noite.",preco:189.90,imagem:"produto-01.jpg"},
+{id:2,categoria:"saia",nome:"Saia Curta Preta",descricao:"Peça básica para compor looks.",preco:79.90,imagem:"produto-02.jpg"},
+{id:3,categoria:"cropped",nome:"Cropped Branco",descricao:"Básico bonito e versátil.",preco:59.90,imagem:"produto-03.jpg"},
+{id:4,categoria:"blusa",nome:"Blusa Manga Bufante",descricao:"Leve, bonita e fácil de combinar.",preco:109.90,imagem:"produto-04.jpg"},
+{id:5,categoria:"conjuntos",nome:"Conjunto Alfaiataria Bege",descricao:"Composição elegante em tons neutros.",preco:249.90,imagem:"look1.jpg"},
+{id:6,categoria:"macacao",nome:"Macacão Festa Preto",descricao:"Visual marcante para sair.",preco:289.90,imagem:"look2.jpg"},
+{id:7,categoria:"calcas",nome:"Calça Wide Leg",descricao:"Moderna, confortável e estilosa.",preco:159.90,imagem:"produto-07.jpg"},
+{id:8,categoria:"jeans",nome:"Calça Jeans Premium",descricao:"Versátil para o dia e para a noite.",preco:149.90,imagem:"produto-08.jpg"},
+{id:9,categoria:"short",nome:"Short Alfaiataria",descricao:"Confortável, bonito e moderno.",preco:89.90,imagem:"produto-09.jpg"},
+{id:10,categoria:"cropped",nome:"Cropped Preto",descricao:"Combina com saia, jeans e short.",preco:59.90,imagem:"produto-10.jpg"},
+{id:11,categoria:"vestidos",nome:"Vestido Curto Nude",descricao:"Simples, bonito e pronto pra usar.",preco:129.90,imagem:"produto-11.jpg"},
+{id:12,categoria:"acessorios",nome:"Bolsa Pequena Dourada",descricao:"Detalhe final para seu look.",preco:69.90,imagem:"produto-12.jpg"},
+{id:13,categoria:"agasalhos",nome:"Cardigã Off-White",descricao:"Leve para completar o look.",preco:139.90,imagem:"produto-13.jpg"},
+{id:14,categoria:"saia",nome:"Saia Midi Cetim",descricao:"Brilho leve e caimento bonito.",preco:139.90,imagem:"produto-14.jpg"},
+{id:15,categoria:"vestidos",nome:"Vestido Justo Preto",descricao:"Look certeiro para balada.",preco:139.90,imagem:"produto-15.jpg"},
+{id:16,categoria:"blusa",nome:"Top Alcinha",descricao:"Leve, básico e bonito.",preco:49.90,imagem:"produto-16.jpg"},
+{id:17,categoria:"agasalhos",nome:"Jaqueta Fanny",descricao:"Jaqueta com brilho e zíper frontal.",preco:123.00,imagens:["Screenshot_20260425_192451_ZAX.jpg","Screenshot_20260425_192416_ZAX.jpg","Screenshot_20260425_192326_ZAX.jpg"]},
+{id:18,categoria:"conjuntos",nome:"Conjunto Couro Jodie",descricao:"Conjunto moderno com jaqueta e calça.",preco:123.00,imagens:["Screenshot_20260425_200137_ZAX.jpg","Screenshot_20260425_200106_ZAX.jpg"]},
+{id:19,categoria:"conjuntos",nome:"Vestido + Jaqueta Elie",descricao:"Vestido com jaqueta em couro ecológico.",preco:113.00,imagens:["Screenshot_20260425_200517_ZAX.jpg","Screenshot_20260425_200529_ZAX.jpg","Screenshot_20260425_200539_ZAX.jpg"]}
+];
+
+let paginaAtual = 1;
+let categoriaAtual = "todos";
+let ordemAtual = "menor";
+let produtoAtual = null;
+const itensPorPagina = 16;
+
+function formatPrice(v){return v.toFixed(2).replace(".", ",")}
+function getImagemProduto(p){return p.imagens ? p.imagens[0] : p.imagem}
+
+function renderProducts(){
+  const container = document.getElementById("products");
+  const pagination = document.getElementById("pagination");
+  let lista = [...produtos];
+
+  if(categoriaAtual !== "todos") lista = lista.filter(p => p.categoria === categoriaAtual);
+  if(ordemAtual === "menor") lista.sort((a,b) => a.preco - b.preco);
+  if(ordemAtual === "maior") lista.sort((a,b) => b.preco - a.preco);
+
+  const totalPaginas = Math.ceil(lista.length / itensPorPagina);
+  const inicio = (paginaAtual - 1) * itensPorPagina;
+  const paginaItens = lista.slice(inicio, inicio + itensPorPagina);
+
+  container.innerHTML = paginaItens.map(produto => `
+    <div class="product">
+      <div class="product-img"><img src="${getImagemProduto(produto)}" alt="${produto.nome}"></div>
+      <div class="product-info">
+        <small>${produto.categoria}</small>
+        <h3>${produto.nome}</h3>
+        <p>${produto.descricao}</p>
+        <div class="price">R$ ${formatPrice(produto.preco)}</div>
+        <button onclick="openProductModal(${produto.id})">Ver detalhes</button>
+      </div>
+    </div>
   `).join("");
 
   pagination.innerHTML = "";
-
-  for(let i = 1; i <= totalPaginas; i++){
-    pagination.innerHTML += `
-      <button class="${i === paginaAtual ? "active" : ""}" onclick="changePage(${i})">${i}</button>
-    `;
+  for(let i=1;i<=totalPaginas;i++){
+    pagination.innerHTML += `<button class="${i===paginaAtual ? "active" : ""}" onclick="changePage(${i})">${i}</button>`;
   }
 }
 
-function changePage(numero){
-  paginaAtual = numero;
-  renderProducts();
-  document.getElementById("catalogo").scrollIntoView({behavior:"smooth"});
-}
+function changePage(n){paginaAtual=n;renderProducts();document.getElementById("catalogo").scrollIntoView({behavior:"smooth"})}
 
 function openProductModal(id){
   const p = produtos.find(x => x.id === id);
   if(!p) return;
-
   produtoAtual = p;
-
   document.getElementById("modalTitle").innerText = p.nome;
   document.getElementById("modalDesc").innerText = p.descricao;
   document.getElementById("modalPrice").innerText = "R$ " + formatPrice(p.preco);
-
   const imagens = p.imagens ? p.imagens : [p.imagem];
-
-  document.getElementById("modalGallery").innerHTML = imagens.map(img => `
-    <img src="${img}" alt="${p.nome}">
-  `).join("");
-
+  document.getElementById("modalGallery").innerHTML = imagens.map(img => `<img src="${img}" alt="${p.nome}">`).join("");
   document.getElementById("productModal").classList.add("active");
 }
 
-function closeProductModal(){
-  document.getElementById("productModal").classList.remove("active");
-}
+function closeProductModal(){document.getElementById("productModal").classList.remove("active")}
 
 function comprarWhats(){
   if(!produtoAtual) return;
-
   const msg = `Olá! Quero consultar disponibilidade da peça ${produtoAtual.nome}. Gostaria de saber cores, tamanhos e prazo de envio.`;
-
   window.open(`https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(msg)}`, "_blank");
 }
 
-function filterProducts(cat, label){
-  categoriaAtual = cat;
-  paginaAtual = 1;
-  document.getElementById("filterLabel").innerText = label;
-  closeDropdowns();
-  renderProducts();
-  document.getElementById("catalogo").scrollIntoView({behavior:"smooth"});
-}
-
-function sortProducts(tipo, label){
-  ordemAtual = tipo;
-  paginaAtual = 1;
-  document.getElementById("sortLabel").innerText = label;
-  closeDropdowns();
-  renderProducts();
-}
+function filterProducts(cat,label){categoriaAtual=cat;paginaAtual=1;document.getElementById("filterLabel").innerText=label;closeDropdowns();renderProducts()}
+function sortProducts(tipo,label){ordemAtual=tipo;paginaAtual=1;document.getElementById("sortLabel").innerText=label;closeDropdowns();renderProducts()}
 
 function toggleDropdown(id){
-  const menu = document.getElementById(id);
-  if(!menu) return;
-
-  document.querySelectorAll(".dropdown-menu").forEach(item=>{
-    if(item.id !== id) item.classList.remove("active");
-  });
-
+  const menu=document.getElementById(id);
+  if(!menu)return;
+  document.querySelectorAll(".dropdown-menu").forEach(item=>{if(item.id!==id)item.classList.remove("active")});
   menu.classList.toggle("active");
 }
 
-function closeDropdowns(){
-  document.querySelectorAll(".dropdown-menu").forEach(menu=>{
-    menu.classList.remove("active");
-  });
-}
+function closeDropdowns(){document.querySelectorAll(".dropdown-menu").forEach(menu=>menu.classList.remove("active"))}
+function toggleCart(){document.getElementById("cart").classList.toggle("active")}
+function toggleMenu(){document.getElementById("sideMenu").classList.toggle("active")}
+function checkout(){window.open(`https://wa.me/${WHATSAPP_NUMERO}`,"_blank")}
 
-document.addEventListener("click", function(e){
-  if(!e.target.closest(".dropdown")){
-    closeDropdowns();
-  }
-});
-
-function toggleCart(){
-  document.getElementById("cart").classList.toggle("active");
-}
-
-function toggleMenu(){
-  document.getElementById("sideMenu").classList.toggle("active");
-}
-
-function renderCart(){
-  const box = document.getElementById("cartItems");
-  const total = document.getElementById("total");
-
-  box.innerHTML = "<p>Use o botão de detalhes para consultar disponibilidade.</p>";
-  total.innerText = "0,00";
-}
-
-function checkout(){
-  window.open(`https://wa.me/${WHATSAPP_NUMERO}`, "_blank");
-}
-
-let slideAtual = 0;
-
+let slideAtual=0;
 function iniciarSlider(){
-  const slides = document.querySelectorAll(".slide");
-  const dots = document.querySelectorAll("#sliderDots span");
-
-  if(slides.length === 0) return;
-
-  setInterval(() => {
+  const slides=document.querySelectorAll(".slide");
+  const dots=document.querySelectorAll("#sliderDots span");
+  if(slides.length===0)return;
+  setInterval(()=>{
     slides[slideAtual].classList.remove("active");
     dots[slideAtual].classList.remove("active");
-
-    slideAtual = (slideAtual + 1) % slides.length;
-
+    slideAtual=(slideAtual+1)%slides.length;
     slides[slideAtual].classList.add("active");
     dots[slideAtual].classList.add("active");
-  }, 3500);
+  },3500);
 }
 
 renderProducts();
-renderCart();
 iniciarSlider();
 </script>
 </body>
