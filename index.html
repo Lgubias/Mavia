@@ -732,7 +732,39 @@ header{
 </head>
 
 <body>
+<div class="product-modal" id="productModal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeProductModal()">×</button>
 
+    <div class="modal-gallery" id="modalGallery"></div>
+
+    <div class="modal-info">
+      <small id="modalCategoria"></small>
+      <h2 id="modalNome"></h2>
+      <div class="modal-price" id="modalPreco"></div>
+
+      <p id="modalDescricao"></p>
+
+      <div class="modal-warning">
+        <strong>Peça sob encomenda ✨</strong>
+        <p>
+          Consulte disponibilidade de cores e tamanhos pelo WhatsApp ou pelo nosso Instagram.
+        </p>
+        <p>
+          Prazo estimado de envio: 5 a 10 dias úteis após confirmação.
+        </p>
+      </div>
+
+      <button class="modal-whatsapp" id="modalWhatsapp">
+        Consultar no WhatsApp
+      </button>
+
+      <button class="modal-instagram" onclick="window.open('https://instagram.com/mavien.mavia')">
+        Ver no Instagram
+      </button>
+    </div>
+  </div>
+</div> 
 <header>
   <button class="menu-btn" onclick="toggleMenu()">☰</button>
 
