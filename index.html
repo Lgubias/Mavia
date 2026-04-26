@@ -1104,7 +1104,9 @@ function renderProducts(){
           <h3>${p.nome}</h3>
           <p>${p.descricao}</p>
           <div class="price">R$ ${formatPrice(p.preco)}</div>
-          <button onclick="addCart(${p.id})">Adicionar ao carrinho 🛒</button>
+          <button onclick="openProductModal(${produto.id})">
+  Ver detalhes
+</button>
         </div>
       </div>
     `;
