@@ -915,6 +915,8 @@ Simples. Direto. Bem pensado. ✨
 </div>
 
 <script>
+const WHATSAPP_NUMERO = "5500000000000";
+
 const produtos = [
   {id:1,categoria:"vestidos",nome:"Vestido Balada Preto",descricao:"Look fácil para sair à noite.",preco:189.90,imagem:"produto-01.jpg"},
   {id:2,categoria:"saia",nome:"Saia Curta Preta",descricao:"Peça básica para compor looks.",preco:79.90,imagem:"produto-02.jpg"},
@@ -930,4 +932,143 @@ const produtos = [
   {id:12,categoria:"acessorios",nome:"Bolsa Pequena Dourada",descricao:"Detalhe final para seu look.",preco:69.90,imagem:"produto-12.jpg"},
   {id:13,categoria:"agasalhos",nome:"Cardigã Off-White",descricao:"Leve para completar o look.",preco:139.90,imagem:"produto-13.jpg"},
   {id:14,categoria:"saia",nome:"Saia Midi Cetim",descricao:"Brilho leve e caimento bonito.",preco:139.90,imagem:"produto-14.jpg"},
-  {id:15,categoria:"vestidos",nome:"Vestido Justo Preto",descr
+  {id:15,categoria:"vestidos",nome:"Vestido Justo Preto",descricao:"Look certeiro para balada.",preco:139.90,imagem:"produto-15.jpg"},
+  {id:16,categoria:"blusa",nome:"Top Alcinha",descricao:"Leve, básico e bonito.",preco:49.90,imagem:"produto-16.jpg"},
+
+  {id:17,categoria:"agasalhos",nome:"Jaqueta Fanny",descricao:"Jaqueta com brilho e zíper frontal.",preco:123.00,imagens:["Screenshot_20260425_192451_ZAX.jpg","Screenshot_20260425_192416_ZAX.jpg","Screenshot_20260425_192326_ZAX.jpg"]},
+  {id:18,categoria:"conjuntos",nome:"Conjunto Couro Jodie",descricao:"Conjunto moderno com jaqueta e calça.",preco:123.00,imagens:["Screenshot_20260425_200137_ZAX.jpg","Screenshot_20260425_200106_ZAX.jpg"]},
+  {id:19,categoria:"conjuntos",nome:"Vestido + Jaqueta Elie",descricao:"Vestido com jaqueta em couro ecológico.",preco:113.00,imagens:["Screenshot_20260425_200517_ZAX.jpg","Screenshot_20260425_200529_ZAX.jpg","Screenshot_20260425_200539_ZAX.jpg"]}
+];
+
+let currentPage = 1;
+let currentFilter = "todos";
+let currentSort = "menor";
+let produtoAtual = null;
+const perPage = 16;
+
+function getImagemProduto(produto){
+  return produto.imagens ? produto.imagens[0] : produto.imagem;
+}
+
+function renderProducts(){
+  const container = document.getElementById("products");
+  const pagination = document.getElementById("pagination");
+
+  let lista = [...produtos];
+
+  if(currentFilter !== "todos"){
+    lista = lista.filter(p => p.categoria === currentFilter);
+  }
+
+  if(currentSort === "menor"){
+    lista.sort((a,b) => a.preco - b.preco);
+  }
+
+  if(currentSort === "maior"){
+    lista.sort((a,b) => b.preco - a.preco);
+  }
+
+  const totalPages = Math.ceil(lista.length / perPage);
+  const start = (currentPage - 1) * perPage;
+  const pageItems = lista.slice(start, start + perPage);
+
+  container.innerHTML = pageItems.map(produto => `
+    <div class="product">
+      <div class="product-img">
+        <img src="${getImagemProduto(produto)}" alt="${produto.nome}">
+      </div>
+      <div class="product-info">
+        <small>${produto.categoria}</small>
+        <h3>${produto.nome}</h3>
+        <p>${produto.descricao}</p>
+        <div class="price">R$ ${produto.preco.toFixed(2).replace(".", ",")}</div>
+        <button onclick="openProductModal(${produto.id})">Ver detalhes</button>
+      </div>
+    </div>
+  `).join("");
+
+  pagination.innerHTML = "";
+
+  for(let i = 1; i <= totalPages; i++){
+    pagination.innerHTML += `<button class="${i === currentPage ? "active" : ""}" onclick="goToPage(${i})">${i}</button>`;
+  }
+}
+
+function openProductModal(id){
+  const p = produtos.find(x => x.id === id);
+  if(!p) return;
+
+  produtoAtual = p;
+
+  document.getElementById("modalTitle").innerText = p.nome;
+  document.getElementById("modalDesc").innerText = p.descricao;
+  document.getElementById("modalPrice").innerText = "R$ " + p.preco.toFixed(2).replace(".", ",");
+
+  const imagens = p.imagens ? p.imagens : [p.imagem];
+
+  document.getElementById("modalGallery").innerHTML = imagens.map(img => `
+    <img src="${img}" alt="${p.nome}">
+  `).join("");
+
+  document.getElementById("productModal").classList.add("active");
+}
+
+function closeProductModal(){
+  document.getElementById("productModal").classList.remove("active");
+}
+
+function comprarWhats(){
+  if(!produtoAtual) return;
+
+  const msg = `Olá! Quero consultar disponibilidade da peça ${produtoAtual.nome}. Gostaria de saber cores, tamanhos e prazo de envio.`;
+
+  window.open(`https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(msg)}`, "_blank");
+}
+
+function goToPage(page){
+  currentPage = page;
+  renderProducts();
+}
+
+function filterProducts(categoria, label){
+  currentFilter = categoria;
+  currentPage = 1;
+  document.getElementById("filterLabel").innerText = label;
+  closeDropdowns();
+  renderProducts();
+}
+
+function sortProducts(tipo, label){
+  currentSort = tipo;
+  currentPage = 1;
+  document.getElementById("sortLabel").innerText = label;
+  closeDropdowns();
+  renderProducts();
+}
+
+function toggleDropdown(id){
+  const menu = document.getElementById(id);
+  if(menu) menu.classList.toggle("active");
+}
+
+function closeDropdowns(){
+  document.querySelectorAll(".dropdown-menu").forEach(menu => menu.classList.remove("active"));
+}
+
+function toggleMenu(){
+  document.getElementById("sideMenu").classList.toggle("active");
+}
+
+function toggleCart(){
+  document.getElementById("cart").classList.toggle("active");
+}
+
+function checkout(){
+  window.open(`https://wa.me/${WHATSAPP_NUMERO}`, "_blank");
+}
+
+renderProducts();
+</script>
+
+</body>
+</html>
