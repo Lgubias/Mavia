@@ -729,43 +729,10 @@ header{
   }
 }
 </style>
-
 </head>
 
 <body>
 
-  <div class="modal-content">
-    <button class="modal-close" onclick="closeProductModal()">×</button>
-
-    <div class="modal-gallery" id="modalGallery"></div>
-
-    <div class="modal-info">
-      <small id="modalCategoria"></small>
-      <h2 id="modalNome"></h2>
-      <div class="modal-price" id="modalPreco"></div>
-
-      <p id="modalDescricao"></p>
-
-      <div class="modal-warning">
-        <strong>Peça sob encomenda ✨</strong>
-        <p>
-          Consulte disponibilidade de cores e tamanhos pelo WhatsApp ou pelo nosso Instagram.
-        </p>
-        <p>
-          Prazo estimado de envio: 5 a 10 dias úteis após confirmação.
-        </p>
-      </div>
-
-      <button class="modal-whatsapp" id="modalWhatsapp">
-        Consultar no WhatsApp
-      </button>
-
-      <button class="modal-instagram" onclick="window.open('https://instagram.com/mavien.mavia')">
-        Ver no Instagram
-      </button>
-    </div>
-  </div>
-</div> 
 <header>
   <button class="menu-btn" onclick="toggleMenu()">☰</button>
 
@@ -901,28 +868,11 @@ header{
     <div class="gold-line"></div>
 
     <p>
-      A MAVIEN é uma loja online pensada para mulheres que valorizam praticidade, estilo e confiança na hora de se vestir.
-      
-
-Aqui, você encontra peças selecionadas para vestir bem, valorizar o corpo e acompanhar sua rotina — do básico ao mais elaborado, sempre com equilíbrio entre conforto e elegância.
-      
-
-Nosso catálogo reúne roupas disponíveis à pronta entrega e também opções sob encomenda, permitindo que você tenha acesso a ainda mais modelos, estilos e novidades.
-    </p>
-    
-As peças sob encomenda são escolhidas com o mesmo cuidado e seguem a proposta da marca, trazendo mais variedade sem abrir mão da qualidade e do bom gosto.
-
-A experiência é simples e direta: você escolhe, combina e compra de forma prática, com atendimento próximo e suporte durante todo o processo.
-
-Mesmo sendo online, prezamos por transparência e confiança, para que você se sinta segura em cada escolha.
-
+      A MAVIEN é uma loja de roupas femininas para acompanhar você em todos os momentos — do dia a dia à noite.
     </p>
 
     <p>
-A MAVIEN é sobre praticidade, versatilidade e autoestima.
-Sobre ter opções que se adaptam a você — e não o contrário.
-
-Simples. Direto. Bem pensado. ✨
+      Peças que unem conforto, estilo e versatilidade, com objetivo de fazer você se sentir bonita, confiante e bem vestida, sem complicação, com opções que vão do básico ao look para sair.
     </p>
 
     <div class="contact-buttons">
@@ -930,8 +880,8 @@ Simples. Direto. Bem pensado. ✨
         🟢 FALAR NO WHATSAPP
       </button>
 
-      <button onclick="window.open('https://www.instagram.com/mavi.mavien?igsh=c2M3ZWo1Y3BpMXo3&utm_source=qr')">
-        📷 @mavi.mavien
+      <button onclick="window.open('https://instagram.com/mavien.mavia')">
+        📷 @MAVIEN.MAVIA
       </button>
     </div>
 
@@ -950,34 +900,6 @@ Simples. Direto. Bem pensado. ✨
 </div>
 
 <script>
-  renderProducts();
-  function openProductModal(id){
-  const produto = produtos.find(p => p.id === id);
-  if(!produto) return;
-
-  const imagens = produto.imagens ? produto.imagens : [produto.imagem];
-
-  document.getElementById("modalGallery").innerHTML = imagens.map(img => `
-    <img src="${img}" alt="${produto.nome}">
-  `).join("");
-
-  document.getElementById("modalCategoria").innerText = produto.categoria;
-  document.getElementById("modalNome").innerText = produto.nome;
-  document.getElementById("modalPreco").innerText = "R$ " + produto.preco.toFixed(2).replace(".", ",");
-  document.getElementById("modalDescricao").innerText = produto.descricao;
-
-  const mensagem = `Oi! Quero consultar disponibilidade da peça: ${produto.nome}. Gostaria de saber cores, tamanhos e prazo de envio.`;
-
-  document.getElementById("modalWhatsapp").onclick = function(){
-    window.open(`https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(mensagem)}`, "_blank");
-  };
-
-  document.getElementById("productModal").classList.add("active");
-}
-
-function closeProductModal(){
-  document.getElementById("productModal").classList.remove("active");
-}
 const produtos = [
   {id:1,categoria:"vestidos",nome:"Vestido Balada Preto",descricao:"Look fácil para sair à noite.",preco:189.90,imagem:"produto-01.jpg"},
   {id:2,categoria:"saia",nome:"Saia Curta Preta",descricao:"Peça básica para compor looks.",preco:79.90,imagem:"produto-02.jpg"},
@@ -1061,7 +983,7 @@ function renderProducts(){
           <h3>${p.nome}</h3>
           <p>${p.descricao}</p>
           <div class="price">R$ ${formatPrice(p.preco)}</div>
-          <button onclick="openProductModal(${produto.id})">Ver detalhes</button>
+          <button onclick="addCart(${p.id})">Adicionar ao carrinho 🛒</button>
         </div>
       </div>
     `;
