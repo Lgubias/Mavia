@@ -979,25 +979,8 @@ function openProductModal(id){
 
   document.getElementById("modalTitle").innerText = p.nome;
   document.getElementById("modalDesc").innerText = p.descricao;
-  document.getElementById("modalPrice").innerText = "R$ " + p.preco.toFixed(2).replace(".", ",");
-<script>
-const WHATSAPP_NUMERO = "5500000000000";
-
+  document.getElementById("modalPrice").innerText = "R$ " + p.preco.toFixed(2).replace(".", "
 const produtos = [
-{id:32,categoria:"vestidos",nome:"Vestido Tubinho",descricao:"Clássico para sair.",preco:129.90,imagem:"produto-32.jpg"},
-
-{
- id:33,
-  categoria:"agasalhos",
-  nome:"Jaqueta Fanny",
-  descricao:"Jaqueta com brilho e zíper frontal.",
-  preco:123.00,
-  imagens:[
-    "Screenshot_20260425_192451_ZAX.jpg",
-    "Screenshot_20260425_192416_ZAX.jpg",
-    "Screenshot_20260425_192326_ZAX.jpg"
-  ]
-}
   {id:1,categoria:"vestidos",nome:"Vestido Balada Preto",descricao:"Look fácil para sair à noite.",preco:189.90,imagem:"produto-01.jpg"},
   {id:2,categoria:"saia",nome:"Saia Curta Preta",descricao:"Peça básica para compor looks.",preco:79.90,imagem:"produto-02.jpg"},
   {id:3,categoria:"cropped",nome:"Cropped Branco",descricao:"Básico bonito e versátil.",preco:59.90,imagem:"produto-03.jpg"},
