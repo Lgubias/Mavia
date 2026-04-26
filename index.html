@@ -977,40 +977,39 @@ Simples. Direto. Bem pensado. ✨
 const WHATSAPP_NUMERO = "5500000000000";
 
 const produtos = [
-  tipo:"estoque"
-  tipo:"encomenda"
-{id:1,categoria:"conjuntos",nome:"Conjunto Tricot Sobreposto",descricao:"Conjunto em tricot com blusa sobreposta e vestido. Tamanho único, veste 36 ao 42. Tecido: 90% modal e 10% elastano.",preco:220.00,imagens:["Id.1.jpg","Id1.jpg"]},
+{id:1,categoria:"conjuntos",nome:"Conjunto Tricot Sobreposto",descricao:"Conjunto em tricot com blusa sobreposta e vestido. Tamanho único, veste 36 ao 42. Tecido: 90% modal e 10% elastano.",preco:220.00,imagens:["Id.1.jpg","Id1.jpg"],tipo:"encomenda"},
 {id:2,categoria:"saia",nome:"Saia Curta Preta",descricao:"Peça básica para compor looks.",preco:79.90,imagem:"produto-02.jpg",tipo:"estoque"},
-{id:3,categoria:"cropped",nome:"Cropped Branco",descricao:"Básico bonito e versátil.",preco:59.90,imagem:"produto-03.jpg"},
-{id:4,categoria:"blusa",nome:"Blusa Manga Bufante",descricao:"Leve, bonita e fácil de combinar.",preco:109.90,imagem:"produto-04.jpg"},
-{id:5,categoria:"conjuntos",nome:"Conjunto Alfaiataria Bege",descricao:"Composição elegante em tons neutros.",preco:249.90,imagem:"look1.jpg"},
-{id:6,categoria:"macacao",nome:"Macacão Festa Preto",descricao:"Visual marcante para sair.",preco:289.90,imagem:"look2.jpg"},
-{id:7,categoria:"calcas",nome:"Calça Wide Leg",descricao:"Moderna, confortável e estilosa.",preco:159.90,imagem:"produto-07.jpg"},
-{id:8,categoria:"jeans",nome:"Calça Jeans Premium",descricao:"Versátil para o dia e para a noite.",preco:149.90,imagem:"produto-08.jpg"},
-{id:9,categoria:"short",nome:"Short Alfaiataria",descricao:"Confortável, bonito e moderno.",preco:89.90,imagem:"produto-09.jpg"},
-{id:10,categoria:"cropped",nome:"Cropped Preto",descricao:"Combina com saia, jeans e short.",preco:59.90,imagem:"produto-10.jpg"},
-{id:11,categoria:"vestidos",nome:"Vestido Curto Nude",descricao:"Simples, bonito e pronto pra usar.",preco:129.90,imagem:"produto-11.jpg"},
-{id:12,categoria:"acessorios",nome:"Bolsa Pequena Dourada",descricao:"Detalhe final para seu look.",preco:69.90,imagem:"produto-12.jpg"},
-{id:13,categoria:"agasalhos",nome:"Cardigã Off-White",descricao:"Leve para completar o look.",preco:139.90,imagem:"produto-13.jpg"},
-{id:14,categoria:"saia",nome:"Saia Midi Cetim",descricao:"Brilho leve e caimento bonito.",preco:139.90,imagem:"produto-14.jpg"},
-{id:15,categoria:"vestidos",nome:"Vestido Justo Preto",descricao:"Look certeiro para balada.",preco:139.90,imagem:"produto-15.jpg"},
-{id:16,categoria:"blusa",nome:"Top Alcinha",descricao:"Leve, básico e bonito.",preco:49.90,imagem:"produto-16.jpg"},
-{id:17,categoria:"agasalhos",nome:"Jaqueta Fanny",descricao:"Jaqueta com brilho e zíper frontal.",preco:123.00,imagens:["Screenshot_20260425_192451_ZAX.jpg","Screenshot_20260425_192416_ZAX.jpg","Screenshot_20260425_192326_ZAX.jpg"]},
-{id:18,categoria:"conjuntos",nome:"Conjunto Couro Jodie",descricao:"Conjunto moderno com jaqueta e calça.",preco:123.00,imagens:["Screenshot_20260425_200137_ZAX.jpg","Screenshot_20260425_200106_ZAX.jpg"]},
-{id:19,categoria:"conjuntos",nome:"Vestido + Jaqueta Elie",descricao:"Vestido com jaqueta em couro ecológico.",preco:113.00,imagens:["Screenshot_20260425_200517_ZAX.jpg","Screenshot_20260425_200529_ZAX.jpg","Screenshot_20260425_200539_ZAX.jpg"]},
-{id:20,categoria:"conjuntos",nome:"Conjunto Canelado Zíper",descricao:"Conjunto canelado com zíper frontal, modela o corpo e é super confortável. Disponível em várias cores.",preco:115.00,imagens:["Con1.jpg","Con2.jpg","Con3.jpg"]},
+{id:3,categoria:"cropped",nome:"Cropped Branco",descricao:"Básico bonito e versátil.",preco:59.90,imagem:"produto-03.jpg",tipo:"estoque"},
+{id:4,categoria:"blusa",nome:"Blusa Manga Bufante",descricao:"Leve, bonita e fácil de combinar.",preco:109.90,imagem:"produto-04.jpg",tipo:"estoque"},
+{id:5,categoria:"conjuntos",nome:"Conjunto Alfaiataria Bege",descricao:"Composição elegante em tons neutros.",preco:249.90,imagem:"look1.jpg",tipo:"encomenda"},
+{id:6,categoria:"macacao",nome:"Macacão Festa Preto",descricao:"Visual marcante para sair.",preco:289.90,imagem:"look2.jpg",tipo:"encomenda"},
+{id:7,categoria:"calcas",nome:"Calça Wide Leg",descricao:"Moderna, confortável e estilosa.",preco:159.90,imagem:"produto-07.jpg",tipo:"estoque"},
+{id:8,categoria:"jeans",nome:"Calça Jeans Premium",descricao:"Versátil para o dia e para a noite.",preco:149.90,imagem:"produto-08.jpg",tipo:"estoque"},
+{id:9,categoria:"short",nome:"Short Alfaiataria",descricao:"Confortável, bonito e moderno.",preco:89.90,imagem:"produto-09.jpg",tipo:"estoque"},
+{id:10,categoria:"cropped",nome:"Cropped Preto",descricao:"Combina com saia, jeans e short.",preco:59.90,imagem:"produto-10.jpg",tipo:"estoque"},
+{id:11,categoria:"vestidos",nome:"Vestido Curto Nude",descricao:"Simples, bonito e pronto pra usar.",preco:129.90,imagem:"produto-11.jpg",tipo:"estoque"},
+{id:12,categoria:"acessorios",nome:"Bolsa Pequena Dourada",descricao:"Detalhe final para seu look.",preco:69.90,imagem:"produto-12.jpg",tipo:"estoque"},
+{id:13,categoria:"agasalhos",nome:"Cardigã Off-White",descricao:"Leve para completar o look.",preco:139.90,imagem:"produto-13.jpg",tipo:"estoque"},
+{id:14,categoria:"saia",nome:"Saia Midi Cetim",descricao:"Brilho leve e caimento bonito.",preco:139.90,imagem:"produto-14.jpg",tipo:"estoque"},
+{id:15,categoria:"vestidos",nome:"Vestido Justo Preto",descricao:"Look certeiro para balada.",preco:139.90,imagem:"produto-15.jpg",tipo:"estoque"},
+{id:16,categoria:"blusa",nome:"Top Alcinha",descricao:"Leve, básico e bonito.",preco:49.90,imagem:"produto-16.jpg",tipo:"estoque"},
+{id:17,categoria:"agasalhos",nome:"Jaqueta Fanny",descricao:"Jaqueta com brilho e zíper frontal.",preco:123.00,imagens:["Screenshot_20260425_192451_ZAX.jpg","Screenshot_20260425_192416_ZAX.jpg","Screenshot_20260425_192326_ZAX.jpg"],tipo:"encomenda"},
+{id:18,categoria:"conjuntos",nome:"Conjunto Couro Jodie",descricao:"Conjunto moderno com jaqueta e calça.",preco:123.00,imagens:["Screenshot_20260425_200137_ZAX.jpg","Screenshot_20260425_200106_ZAX.jpg"],tipo:"encomenda"},
+{id:19,categoria:"conjuntos",nome:"Vestido + Jaqueta Elie",descricao:"Vestido com jaqueta em couro ecológico.",preco:113.00,imagens:["Screenshot_20260425_200517_ZAX.jpg","Screenshot_20260425_200529_ZAX.jpg","Screenshot_20260425_200539_ZAX.jpg"],tipo:"encomenda"},
+{id:20,categoria:"conjuntos",nome:"Conjunto Canelado Zíper",descricao:"Conjunto canelado com zíper frontal, modela o corpo e é super confortável. Disponível em várias cores.",preco:115.00,imagens:["Con1.jpg","Con2.jpg","Con3.jpg"],tipo:"encomenda"},
 {id:21,categoria:"vestidos",nome:"Vestido Midi Tricot Cinto",descricao:"Vestido midi em tricot modal com elastano, modela o corpo com conforto e elegância. Tamanho único, veste 38 ao 42. Possui cinto ajustável e acabamento com babado na barra.",preco:99.90,imagens:["Midi1.jpg","Midi2.jpg","Midi3.jpg","Midi4.jpg","Midi5.jpg","Midi6.jpg"],tipo:"encomenda"}
 ];
-
 
 let paginaAtual = 1;
 let categoriaAtual = "todos";
 let ordemAtual = "menor";
 let produtoAtual = null;
+let carrinho = JSON.parse(localStorage.getItem("carrinhoMavien")) || [];
 const itensPorPagina = 16;
 
 function formatPrice(v){return v.toFixed(2).replace(".", ",")}
 function getImagemProduto(p){return p.imagens ? p.imagens[0] : p.imagem}
+function salvarCarrinho(){localStorage.setItem("carrinhoMavien", JSON.stringify(carrinho))}
 
 function renderProducts(){
   const container=document.getElementById("products");
@@ -1029,11 +1028,17 @@ function renderProducts(){
     <div class="product">
       <div class="product-img"><img src="${getImagemProduto(produto)}" alt="${produto.nome}"></div>
       <div class="product-info">
-        <small>${produto.categoria}</small>
+        <small>${produto.categoria}</small><br>
+        <span class="badge ${produto.tipo === "estoque" ? "estoque" : "encomenda"}">
+          ${produto.tipo === "estoque" ? "Em estoque" : "Sob encomenda"}
+        </span>
         <h3>${produto.nome}</h3>
         <p>${produto.descricao}</p>
         <div class="price">R$ ${formatPrice(produto.preco)}</div>
         <button onclick="openProductModal(${produto.id})">Ver detalhes</button>
+        <button onclick="addCarrinho(${produto.id})" style="margin-top:8px;background:#111;color:#d4af37;border:1px solid rgba(212,175,55,.5)">
+          Adicionar ao carrinho
+        </button>
       </div>
     </div>
   `).join("");
@@ -1044,31 +1049,150 @@ function renderProducts(){
   }
 }
 
-function changePage(n){paginaAtual=n;renderProducts();document.getElementById("catalogo").scrollIntoView({behavior:"smooth"})}
+function changePage(n){
+  paginaAtual=n;
+  renderProducts();
+  document.getElementById("catalogo").scrollIntoView({behavior:"smooth"});
+}
+
 function openProductModal(id){
   const p=produtos.find(x=>x.id===id);
   if(!p)return;
   produtoAtual=p;
+
+  const status = p.tipo === "estoque"
+    ? "Produto disponível em estoque."
+    : "Peça sob encomenda. Consulte disponibilidade de cores e tamanhos.";
+
   document.getElementById("modalTitle").innerText=p.nome;
-  document.getElementById("modalDesc").innerText=p.descricao;
+  document.getElementById("modalDesc").innerText=p.descricao + "\n\n" + status;
   document.getElementById("modalPrice").innerText="R$ "+formatPrice(p.preco);
+
   const imagens=p.imagens ? p.imagens : [p.imagem];
   document.getElementById("modalGallery").innerHTML=imagens.map(img=>`<img src="${img}" alt="${p.nome}">`).join("");
   document.getElementById("productModal").classList.add("active");
 }
+
 function closeProductModal(){document.getElementById("productModal").classList.remove("active")}
+
+function addCarrinho(id){
+  const produto = produtos.find(p=>p.id===id);
+  if(!produto)return;
+
+  const item = carrinho.find(p=>p.id===id);
+  if(item){
+    item.qtd++;
+  }else{
+    carrinho.push({...produto,qtd:1});
+  }
+
+  salvarCarrinho();
+  renderCart();
+  document.getElementById("cart").classList.add("active");
+}
+
+function aumentarQtd(id){
+  const item = carrinho.find(p=>p.id===id);
+  if(item)item.qtd++;
+  salvarCarrinho();
+  renderCart();
+}
+
+function diminuirQtd(id){
+  const item = carrinho.find(p=>p.id===id);
+  if(!item)return;
+  item.qtd--;
+  if(item.qtd<=0)carrinho = carrinho.filter(p=>p.id!==id);
+  salvarCarrinho();
+  renderCart();
+}
+
+function removerItem(id){
+  carrinho = carrinho.filter(p=>p.id!==id);
+  salvarCarrinho();
+  renderCart();
+}
+
+function renderCart(){
+  const box=document.getElementById("cartItems");
+  const total=document.getElementById("total");
+
+  if(carrinho.length===0){
+    box.innerHTML="<p>Seu carrinho está vazio.</p>";
+    total.innerText="0,00";
+    return;
+  }
+
+  let soma=0;
+  box.innerHTML=carrinho.map(p=>{
+    soma += p.preco * p.qtd;
+    return `
+      <div class="cart-item">
+        <strong>${p.nome}</strong><br>
+        <small>${p.tipo === "estoque" ? "Em estoque" : "Sob encomenda"}</small><br>
+        R$ ${formatPrice(p.preco)} x ${p.qtd}<br>
+        <button onclick="diminuirQtd(${p.id})">-</button>
+        <button onclick="aumentarQtd(${p.id})">+</button>
+        <button onclick="removerItem(${p.id})">Remover</button>
+      </div>
+    `;
+  }).join("");
+
+  total.innerText=formatPrice(soma);
+}
+
+function checkout(){
+  if(carrinho.length===0){
+    alert("Seu carrinho está vazio.");
+    return;
+  }
+
+  let msg="Olá! Quero fazer um pedido na MAVIEN:%0A%0A";
+  let soma=0;
+
+  carrinho.forEach(p=>{
+    soma += p.preco * p.qtd;
+    msg += `- ${p.nome} (${p.qtd}x) | ${p.tipo === "estoque" ? "Em estoque" : "Sob encomenda"} | R$ ${formatPrice(p.preco*p.qtd)}%0A`;
+  });
+
+  msg += `%0ATotal: R$ ${formatPrice(soma)}`;
+  msg += `%0A%0AForma de pagamento: quero combinar pelo WhatsApp.`;
+
+  window.open(`https://wa.me/${WHATSAPP_NUMERO}?text=${msg}`,"_blank");
+}
+
 function comprarWhats(){
   if(!produtoAtual)return;
   const msg=`Olá! Quero consultar disponibilidade da peça ${produtoAtual.nome}. Gostaria de saber cores, tamanhos e prazo de envio.`;
   window.open(`https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(msg)}`,"_blank");
 }
-function filterProducts(cat,label){categoriaAtual=cat;paginaAtual=1;document.getElementById("filterLabel").innerText=label;closeDropdowns();renderProducts()}
-function sortProducts(tipo,label){ordemAtual=tipo;paginaAtual=1;document.getElementById("sortLabel").innerText=label;closeDropdowns();renderProducts()}
-function toggleDropdown(id){const menu=document.getElementById(id);if(!menu)return;document.querySelectorAll(".dropdown-menu").forEach(item=>{if(item.id!==id)item.classList.remove("active")});menu.classList.toggle("active")}
+
+function filterProducts(cat,label){
+  categoriaAtual=cat;
+  paginaAtual=1;
+  document.getElementById("filterLabel").innerText=label;
+  closeDropdowns();
+  renderProducts();
+}
+
+function sortProducts(tipo,label){
+  ordemAtual=tipo;
+  paginaAtual=1;
+  document.getElementById("sortLabel").innerText=label;
+  closeDropdowns();
+  renderProducts();
+}
+
+function toggleDropdown(id){
+  const menu=document.getElementById(id);
+  if(!menu)return;
+  document.querySelectorAll(".dropdown-menu").forEach(item=>{if(item.id!==id)item.classList.remove("active")});
+  menu.classList.toggle("active");
+}
+
 function closeDropdowns(){document.querySelectorAll(".dropdown-menu").forEach(menu=>menu.classList.remove("active"))}
 function toggleCart(){document.getElementById("cart").classList.toggle("active")}
 function toggleMenu(){document.getElementById("sideMenu").classList.toggle("active")}
-function checkout(){window.open(`https://wa.me/${WHATSAPP_NUMERO}`,"_blank")}
 
 let slideAtual=0;
 function iniciarSlider(){
@@ -1085,6 +1209,7 @@ function iniciarSlider(){
 }
 
 renderProducts();
+renderCart();
 iniciarSlider();
 </script>
 </body>
