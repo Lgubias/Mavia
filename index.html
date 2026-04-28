@@ -1057,6 +1057,19 @@ function changePage(n){
 }
 
 function openProductModal(id){
+  const warningBox = document.getElementById("modalWarning");
+
+if(p.tipo === "encomenda"){
+  warningBox.innerHTML = `
+    <div class="modal-warning">
+      <strong>Peça sob encomenda ✨</strong><br>
+      Consulte disponibilidade de cores e tamanhos pelo WhatsApp ou Instagram.<br>
+      Prazo de envio: 5 a 10 dias úteis.
+    </div>
+  `;
+}else{
+  warningBox.innerHTML = "";
+}
   const p=produtos.find(x=>x.id===id);
   if(!p)return;
   produtoAtual=p;
