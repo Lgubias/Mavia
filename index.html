@@ -8,6 +8,91 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
+  /* BAZAR */
+.bazar-section{
+  background:#050505;
+  padding:70px 6% 65px;
+  border-top:1px solid rgba(212,175,55,.28);
+  border-bottom:1px solid rgba(212,175,55,.22);
+}
+
+.bazar-title{
+  text-align:center;
+  margin-bottom:34px;
+}
+
+.bazar-title small{
+  color:#d4af37;
+  text-transform:uppercase;
+  letter-spacing:3px;
+  font-size:13px;
+  font-weight:700;
+}
+
+.bazar-title h2{
+  font-family:'Playfair Display',serif;
+  color:#f4e8cf;
+  font-size:48px;
+  margin:8px 0;
+}
+
+.bazar-title p{
+  color:#d8cfbd;
+  font-size:15px;
+}
+
+.bazar-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:20px;
+}
+
+.bazar-card{
+  background:#101010;
+  border:1px solid rgba(212,175,55,.32);
+  border-radius:16px;
+  overflow:hidden;
+  position:relative;
+}
+
+.bazar-tag{
+  position:absolute;
+  top:12px;
+  left:12px;
+  background:#d4af37;
+  color:#111;
+  font-size:11px;
+  padding:6px 10px;
+  border-radius:999px;
+  font-weight:700;
+}
+
+.bazar-img{
+  height:260px;
+}
+
+.bazar-img img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.bazar-info{
+  padding:14px;
+  text-align:center;
+}
+
+.bazar-price{
+  color:#d4af37;
+  font-size:22px;
+  margin:10px 0;
+}
+
+@media(max-width:600px){
+  .bazar-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{background:#080808;color:#fff;font-family:'Montserrat',sans-serif}
@@ -202,7 +287,21 @@ header{height:110px;background:#050505;border-bottom:1px solid rgba(212,175,55,.
   <div class="hero-content">
     <img src="logo-mavien.png" alt="MAVIEN">
     <p>Looks que valorizam você <br><strong>sem esforço</strong></p>
+    </section>
+
+<section class="bazar-section" id="bazar">
+  <div class="bazar-title">
+    <small>Peças selecionadas</small>
+    <h2>Bazar MAVIEN</h2>
+    <p>Peças com preço especial e giro rápido</p>
+  </div>
+
+  <div class="bazar-grid" id="bazarGrid"></div>
+</section>
+
+<section class="section" id="catalogo">
     <button class="gold-btn" onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">VER PEÇAS</button>
+    
   </div>
 </section>
 
