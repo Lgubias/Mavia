@@ -352,17 +352,29 @@ header{
   .modal-gallery{grid-template-columns:1fr}
   .modal-gallery img{height:420px}
 }
-  .encomenda-banner{
+ .encomenda-banner{
+  position:relative;
   height:420px;
-  background:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.85)), url('sua-imagem-encomenda.jpg') center/cover no-repeat;
+
+  background:url('sua-imagem.jpg') center/cover no-repeat;
+
   display:flex;
   align-items:center;
   justify-content:center;
   text-align:center;
-  border-top:1px solid rgba(212,175,55,.25);
-  border-bottom:1px solid rgba(212,175,55,.25);
-}
 
+  overflow:hidden;
+}
+  .encomenda-banner::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.45);
+}
+  .encomenda-overlay{
+  position:relative;
+  z-index:2;
+}
 .encomenda-overlay h2{
   font-family:'Playfair Display',serif;
   font-size:42px;
