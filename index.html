@@ -105,7 +105,69 @@ button{cursor:pointer;font-family:inherit}
 header{height:110px;background:#050505;border-bottom:1px solid rgba(212,175,55,.22);display:flex;align-items:center;justify-content:space-between;padding:0 6%;position:sticky;top:0;z-index:100}
 .menu-btn,.cart-icon{background:none;border:none;color:#d4af37;font-size:34px}
 .header-logo img{height:80px;object-fit:contain}
+  <nav class="top-menu">
+  <a href="#inicio" class="active">Início</a>
+  <a href="#catalogo">Catálogo</a>
+  <a href="#bazar">Bazar</a>
+  <a href="#catalogo">Encomendas</a>
+  <a href="#sobre">Sobre nós</a>
+  <a href="#sobre">Contato</a>
+</nav>
+.top-menu{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  gap:22px;
+  margin-top:10px;
+}
 
+.top-menu a{
+  color:#d8cfbd;
+  text-decoration:none;
+  font-size:13px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  position:relative;
+  transition:.3s;
+}
+
+/* LINHA DOURADA EMBAIXO */
+.top-menu a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-6px;
+  width:0%;
+  height:1px;
+  background:#d4af37;
+  transition:.3s;
+}
+
+/* HOVER */
+.top-menu a:hover{
+  color:#d4af37;
+}
+
+.top-menu a:hover::after{
+  width:100%;
+}
+
+/* ITEM ATIVO */
+.top-menu a.active{
+  color:#d4af37;
+}
+
+.top-menu a.active::after{
+  width:100%;
+}
+
+/* SEPARADOR | */
+.top-menu a:not(:last-child)::before{
+  content:"|";
+  position:absolute;
+  right:-14px;
+  color:#555;
+}
 
 
 .side-menu{position:fixed;top:0;left:-330px;width:320px;height:100vh;background:#050505;border-right:1px solid rgba(212,175,55,.28);z-index:300;padding:28px 28px 40px;transition:.3s;overflow-y:auto}
