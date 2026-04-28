@@ -1,4 +1,66 @@
-576b7f496513fc7fcb8f28b4b23bb17063a3ed7d}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAVIEN | Loja</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+.badge{
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:999px;
+  font-size:11px;
+  font-weight:700;
+  margin-bottom:8px;
+}
+
+.badge.estoque{
+  background:#25D366;
+  color:#fff;
+}
+
+.badge.encomenda{
+  background:#d4af37;
+  color:#111;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:#080808;
+  color:#fff;
+  font-family:'Montserrat',sans-serif;
+}
+
+button{cursor:pointer;font-family:inherit}
+
+header{
+  height:110px;
+  background:#050505;
+  border-bottom:1px solid rgba(212,175,55,.22);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 6%;
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+
+.menu-btn,.cart-icon{
+  background:none;
+  border:none;
+  color:#d4af37;
+  font-size:34px;
+}
 
 .header-logo img{
   height:80px;
@@ -1001,35 +1063,18 @@ function changePage(n){
 }
 
 function openProductModal(id){
-  const p = produtos.find(x => x.id === id);
-  if(!p) return;
+  const warningBox = document.getElementById("modalWarning");
 
-  produtoAtual = p;
-
-  document.getElementById("modalTitle").innerText = p.nome;
-  document.getElementById("modalDesc").innerText = p.descricao;
-  document.getElementById("modalPrice").innerText = "R$ " + formatPrice(p.preco);
-
-  const imagens = p.imagens ? p.imagens : [p.imagem];
-
-  document.getElementById("modalGallery").innerHTML = imagens.map(img => `
-    <img src="${img}" alt="${p.nome}">
-  `).join("");
-
-  const aviso = document.querySelector(".modal-warning");
-
-  if(p.tipo === "encomenda"){
-    aviso.style.display = "block";
-    aviso.innerHTML = `
+if(p.tipo === "encomenda"){
+  warningBox.innerHTML = `
+    <div class="modal-warning">
       <strong>Peça sob encomenda ✨</strong><br>
       Consulte disponibilidade de cores e tamanhos pelo WhatsApp ou Instagram.<br>
       Prazo de envio: 5 a 10 dias úteis.
-    `;
-  }else{
-    aviso.style.display = "none";
-  }
-
-  document.getElementById("productModal").classList.add("active");
+    </div>
+  `;
+}else{
+  warningBox.innerHTML = "";
 }
   const p=produtos.find(x=>x.id===id);
   if(!p)return;
