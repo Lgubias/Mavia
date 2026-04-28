@@ -693,9 +693,57 @@ function iniciarSlider(){
     dots[slideAtual].classList.add("active");
   },3500);
 }
+const produtosBazar = [
+  {
+    id:101,
+    nome:"Macacão Rosa",
+    descricao:"Modelador com cinto",
+    preco:65.00,
+    imagem:"neon1.jpeg"
+  },
+  {
+    id:102,
+    nome:"Macacão Preto",
+    descricao:"Peça com pequeno ajuste",
+    preco:60.00,
+    imagem:"pt1.jpeg"
+  },
+  {
+    id:103,
+    nome:"Sandália Pink",
+    descricao:"Usada 1x",
+    preco:70.00,
+    imagem:"rosa1.jpeg"
+  },
+  {
+    id:104,
+    nome:"Sandália Preta",
+    descricao:"Clássica e versátil",
+    preco:50.00,
+    imagem:"preto1.jpeg"
+  }
+];
 
+function renderBazar(){
+  const el = document.getElementById("bazarGrid");
+
+  el.innerHTML = produtosBazar.map(p=>`
+    <div class="bazar-card">
+      <span class="bazar-tag">BAZAR</span>
+      <div class="bazar-img">
+        <img src="${p.imagem}">
+      </div>
+      <div class="bazar-info">
+        <h3>${p.nome}</h3>
+        <p>${p.descricao}</p>
+        <div class="bazar-price">R$ ${p.preco.toFixed(2)}</div>
+      </div>
+    </div>
+  `).join("");
+}
 renderProducts();
 renderCart();
+  renderBazar();
 iniciarSlider();
 </script>
 
