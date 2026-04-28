@@ -729,13 +729,43 @@ function renderBazar(){
   const bazarGrid = document.getElementById("bazarGrid");
   if(!bazarGrid) return;
 
-  const bazar = produtosPorTipo("bazar");
+  // PRODUTOS MOCK (depois você edita)
+  const bazar = [
+    {
+      id:101,
+      nome:"Macacão Pink",
+      descricao:"Peça impactante com modelagem perfeita",
+      preco:65.00,
+      imagem:"produto-01.jpg"
+    },
+    {
+      id:102,
+      nome:"Macacão Preto",
+      descricao:"Clássico elegante e versátil",
+      preco:60.00,
+      imagem:"produto-02.jpg"
+    },
+    {
+      id:103,
+      nome:"Body Tiras",
+      descricao:"Moderno e estiloso",
+      preco:20.00,
+      imagem:"produto-03.jpg"
+    },
+    {
+      id:104,
+      nome:"Blazer Pink",
+      descricao:"Alfaiataria com presença",
+      preco:35.00,
+      imagem:"produto-04.jpg"
+    }
+  ];
 
   bazarGrid.innerHTML = bazar.map(p => `
-    <div class="bazar-card" onclick="openProductModal(${p.id})">
+    <div class="bazar-card">
       <div class="bazar-img">
         <span class="bazar-tag">BAZAR</span>
-        <img src="${getImagemPrincipal(p)}" alt="${p.nome}">
+        <img src="${p.imagem}" alt="${p.nome}">
       </div>
 
       <div class="bazar-info">
