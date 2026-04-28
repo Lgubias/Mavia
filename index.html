@@ -693,6 +693,83 @@ function iniciarSlider(){
     dots[slideAtual].classList.add("active");
   },3500);
 }
+  function getImagemPrincipal(p){
+  return p.imagens ? p.imagens[0] : p.imagem;
+}
+
+function produtosPorTipo(tipo){
+  return produtos.filter(p => p.tipo === tipo);
+}
+
+function criarCardProduto(p){
+  return `
+    <div class="product" onclick="openProductModal(${p.id})">
+      <div class="product-img">
+        <img src="${getImagemPrincipal(p)}" alt="${p.nome}">
+      </div>
+
+      <div class="product-info">
+        <small>${p.categoria}</small>
+
+        <span class="badge ${p.tipo}">
+          ${p.tipo === "bazar" ? "Bazar" : p.tipo === "encomenda" ? "Sob encomenda" : "Em estoque"}
+        </span>
+
+        <h3>${p.nome}</h3>
+        <p>${p.descricao}</p>
+        <div class="price">R$ ${formatPrice(p.preco)}</div>
+      </div>
+    </div>
+  `;
+}
+
+function renderBazar(){
+  const bazarGrid = document.getElementById("bazarGrid");
+  if(!bazarGrid) return;
+
+  const bazar = produtosPorTipo("bazar");
+
+  bazarGrid.innerHTML = bazar.map(p => `
+    <div class="bazar-card" onclick="openProductModal(${p.id})">
+      <div class="bazar-img">
+        <span class="bazar-tag">BAZAR</span>
+        <img src="${getImagemPrincipal(p)}" alt="${p.nome}">
+      </div>
+
+      <div class="bazar-info">
+        <h3>${p.nome}</h3>
+        <p>${p.descricao}</p>
+        <div class="bazar-price">R$ ${formatPrice(p.preco)}</div>
+      </div>
+    </div>
+  `).join("");
+}
+
+function renderEstoque(){
+  const products = document.getElementById("products");
+  if(!products) return;
+
+  const estoque = produtosPorTipo("estoque");
+
+  products.innerHTML = estoque.map(criarCardProduto).join("");
+}
+
+function renderEncomendas(){
+  const encomendaGrid = document.getElementById("encomendaGrid");
+  if(!encomendaGrid) return;
+
+  const encomendas = produtosPorTipo("encomenda");
+
+  encomendaGrid.innerHTML = encomendas.map(criarCardProduto).join("");
+}
+
+function renderTudo(){
+  renderBazar();
+  renderEstoque();
+  renderEncomendas();
+}
+
+renderTudo();
 
 renderProducts();
 renderCart();
