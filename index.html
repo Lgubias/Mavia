@@ -1063,18 +1063,35 @@ function changePage(n){
 }
 
 function openProductModal(id){
-  const warningBox = document.getElementById("modalWarning");
+  const p = produtos.find(x => x.id === id);
+  if(!p) return;
 
-if(p.tipo === "encomenda"){
-  warningBox.innerHTML = `
-    <div class="modal-warning">
+  produtoAtual = p;
+
+  document.getElementById("modalTitle").innerText = p.nome;
+  document.getElementById("modalDesc").innerText = p.descricao;
+  document.getElementById("modalPrice").innerText = "R$ " + formatPrice(p.preco);
+
+  const imagens = p.imagens ? p.imagens : [p.imagem];
+
+  document.getElementById("modalGallery").innerHTML = imagens.map(img => `
+    <img src="${img}" alt="${p.nome}">
+  `).join("");
+
+  const aviso = document.querySelector(".modal-warning");
+
+  if(p.tipo === "encomenda"){
+    aviso.style.display = "block";
+    aviso.innerHTML = `
       <strong>Peça sob encomenda ✨</strong><br>
       Consulte disponibilidade de cores e tamanhos pelo WhatsApp ou Instagram.<br>
       Prazo de envio: 5 a 10 dias úteis.
-    </div>
-  `;
-}else{
-  warningBox.innerHTML = "";
+    `;
+  }else{
+    aviso.style.display = "none";
+  }
+
+  document.getElementById("productModal").classList.add("active");
 }
   const p=produtos.find(x=>x.id===id);
   if(!p)return;
