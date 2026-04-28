@@ -287,7 +287,9 @@ header{height:110px;background:#050505;border-bottom:1px solid rgba(212,175,55,.
   <div class="hero-content">
     <img src="logo-mavien.png" alt="MAVIEN">
     <p>Looks que valorizam você <br><strong>sem esforço</strong></p>
-    </section>
+    <button class="gold-btn" onclick="document.getElementById('bazar').scrollIntoView({behavior:'smooth'})">VER PEÇAS</button>
+  </div>
+</section>
 
 <section class="bazar-section" id="bazar">
   <div class="bazar-title">
@@ -764,13 +766,7 @@ function renderEncomendas(){
 }
 
 function renderTudo(){
-  renderBazar();
-  renderEstoque();
-  renderEncomendas();
-}
-
-renderTudo();
-
+renderBazar();
 renderProducts();
 renderCart();
 iniciarSlider();
