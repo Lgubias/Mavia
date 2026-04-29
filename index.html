@@ -463,32 +463,36 @@ header{
 </section>
 
 <!-- BAZAR -->
-<section class="bazar-section" id="bazar">
-  <div class="bazar-title">
-    <small>Peças selecionadas</small>
-    <h2>Bazar MAVIEN</h2>
-    <p>Peças com preço especial e giro rápido</p>
-  </div>
 
-  <div class="bazar-grid" id="bazarGrid"></div>
+<section class="bazar-section">
+...
 </section>
-  </section> <!-- fim do bazar -->
 
+<!-- BANNER ENCOMENDA (imagem grande) -->
 
-<!-- ENCOMENDA (colar aqui) -->
 <section class="encomenda-banner" id="encomendas">
   <button 
     class="encomenda-click"
     onclick="document.getElementById('catalogoEncomenda').scrollIntoView({behavior:'smooth'})">
   </button>
 </section>
-  </div>
+
+<!-- CATÁLOGO NORMAL -->
+
+<section class="section" id="catalogo">
+  ...
 </section>
 
+<!-- CATÁLOGO ENCOMENDA (FINAL) -->
 
-<section id="catalogo" class="section">
-    
+<section class="section" id="catalogoEncomenda">
+  <div class="section-title">
+    <small>Encomendas</small>
+    <h2>Peças sob encomenda</h2>
+    <div class="decor-line"></div>
   </div>
+
+  <div class="products" id="encomendaProducts"></div>
 </section>
 
 <section class="section" id="catalogo">
