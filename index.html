@@ -8,6 +8,93 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
+  .encomenda-grid{
+  width:88%;
+  margin:50px auto 25px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:28px;
+}
+
+.encomenda-card{
+  background:#111;
+  border:1px solid rgba(212,175,55,.28);
+  border-radius:18px;
+  overflow:hidden;
+  text-align:center;
+  padding-bottom:22px;
+}
+
+.encomenda-img{
+  height:260px;
+  background:linear-gradient(135deg,#191919,#2b2418);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#d4af37;
+  letter-spacing:3px;
+  font-size:13px;
+}
+
+.encomenda-card h3{
+  margin:18px 14px 6px;
+  color:#fff;
+  font-size:20px;
+}
+
+.encomenda-card p{
+  color:#cfcfcf;
+  margin:8px 18px 14px;
+  font-size:14px;
+  line-height:1.4;
+}
+
+.encomenda-card strong{
+  color:#d4af37;
+  font-size:22px;
+}
+
+.encomenda-pages{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  margin:30px 0 70px;
+}
+
+.encomenda-pages button{
+  background:#0d0d0d;
+  color:#d4af37;
+  border:1px solid rgba(212,175,55,.55);
+  border-radius:50%;
+  width:42px;
+  height:42px;
+  cursor:pointer;
+  font-weight:700;
+}
+
+@media(max-width:768px){
+  .encomenda-grid{
+    width:92%;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
+  }
+
+  .encomenda-img{
+    height:180px;
+  }
+
+  .encomenda-card h3{
+    font-size:15px;
+  }
+
+  .encomenda-card p{
+    font-size:12px;
+  }
+
+  .encomenda-card strong{
+    font-size:18px;
+  }
+}
   /* BAZAR */
 .bazar-section{
   background:#050505;
@@ -646,15 +733,21 @@ header{
 </section>
 
 <!-- CATÁLOGO ENCOMENDA (FINAL) -->
-
-<section class="section" id="catalogoEncomenda">
-  <section class="section" id="catalogoEncomenda">
+ <section class="section" id="catalogoEncomenda">
   <div class="section-title">
     <small>Encomendas</small>
     <h2>Peças sob encomenda</h2>
     <div class="decor-line"></div>
   </div>
 
+  <div class="encomenda-grid" id="encomendaGrid"></div>
+
+  <div class="encomenda-pages">
+    <button onclick="mudarPaginaEncomenda(1)">1</button>
+    <button onclick="mudarPaginaEncomenda(2)">2</button>
+    <button onclick="mudarPaginaEncomenda(3)">3</button>
+  </div>
+</section>
   <!-- COLE AQUI -->
   <div class="encomenda-grid" id="encomendaGrid"></div>
 
@@ -664,10 +757,6 @@ header{
     <button onclick="mudarPaginaEncomenda(3)">3</button>
   </div>
 </section>
-
-  <div class="products" id="encomendaProducts"></div>
-</section>
-
 
 <section class="about" id="sobre">
   <div class="about-content">
