@@ -469,16 +469,14 @@ header{
 
 <!-- BAZAR -->
 
-<section class="bazar-section">
-...
-</section>
-  <!-- BANNER ENCOMENDA (imagem grande) -->
+<section class="bazar-section" id="bazar">
+  <div class="bazar-title">
+    <small>BAZAR</small>
+    <h2>Ofertas especiais</h2>
+    <p>Peças únicas com preço especial</p>
+  </div>
 
-<section class="encomenda-banner" id="encomendas">
-  <button 
-    class="encomenda-click"
-    onclick="document.getElementById('catalogoEncomenda').scrollIntoView({behavior:'smooth'})">
-  </button>
+  <div class="bazar-grid" id="bazarGrid"></div>
 </section>
 
 <!-- CATÁLOGO NORMAL -->
@@ -486,7 +484,16 @@ header{
 <section class="section" id="catalogo">
   ...
 </section>
+</section> <!-- fecha catálogo -->
 
+<!-- BANNER ENCOMENDA AQUI -->
+<section class="encomenda-banner" id="encomendas">
+  <button 
+    class="encomenda-click"
+    onclick="document.getElementById('catalogoEncomenda').scrollIntoView({behavior:'smooth'})">
+  </button>
+</section>
+  
 <section class="section" id="catalogo">
   <div class="section-title">
     <small>Catálogo</small>
