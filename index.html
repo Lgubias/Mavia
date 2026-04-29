@@ -383,6 +383,12 @@ header{
 }
 
 @media(max-width:600px){
+  .encomenda-click{
+    left:6%;
+    bottom:8%;
+    width:65%;
+    height:80px;
+  }
   .encomenda-banner{
     width:92%;
     height:360px;
@@ -391,12 +397,22 @@ header{
     background-position:center;
   }
 
-  .encomenda-click{
-    left:5%;
-    bottom:7%;
-    width:52%;
-    height:75px;
-  }
+.encomenda-click{
+  position:absolute;
+
+  /* POSIÇÃO DO BOTÃO NA IMAGEM */
+  left:5%;
+  bottom:9%;
+
+  /* TAMANHO DA ÁREA CLICÁVEL */
+  width:420px;
+  height:110px;
+
+  background:transparent;
+  border:none;
+  cursor:pointer;
+  z-index:10;
+}
 </style>
 </head>
 
