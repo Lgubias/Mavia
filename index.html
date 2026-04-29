@@ -396,6 +396,79 @@ header{
     border-radius:20px;
     background-position:center;
   }
+  .encomenda-grid{
+  width:88%;
+  margin:50px auto 25px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:28px;
+}
+
+.encomenda-card{
+  background:#111;
+  border:1px solid rgba(212,175,55,.28);
+  border-radius:18px;
+  overflow:hidden;
+  text-align:center;
+  padding-bottom:22px;
+}
+
+.encomenda-img{
+  height:260px;
+  background:linear-gradient(135deg,#191919,#2b2418);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#d4af37;
+  letter-spacing:3px;
+  font-size:13px;
+}
+
+.encomenda-card h3{
+  margin-top:18px;
+  color:#fff;
+  font-size:20px;
+}
+
+.encomenda-card p{
+  color:#cfcfcf;
+  margin:8px 18px;
+  font-size:14px;
+}
+
+.encomenda-card strong{
+  color:#d4af37;
+  font-size:22px;
+}
+
+.encomenda-pages{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  margin-bottom:70px;
+}
+
+.encomenda-pages button{
+  background:transparent;
+  color:#d4af37;
+  border:1px solid rgba(212,175,55,.55);
+  border-radius:50%;
+  width:42px;
+  height:42px;
+  cursor:pointer;
+}
+
+@media(max-width:768px){
+  .encomenda-grid{
+    width:92%;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+  }
+
+  .encomenda-img{
+    height:190px;
+  }
+}
 
 .encomenda-click{
   position:absolute;
@@ -575,11 +648,22 @@ header{
 <!-- CATÁLOGO ENCOMENDA (FINAL) -->
 
 <section class="section" id="catalogoEncomenda">
+  <section class="section" id="catalogoEncomenda">
   <div class="section-title">
     <small>Encomendas</small>
     <h2>Peças sob encomenda</h2>
     <div class="decor-line"></div>
   </div>
+
+  <!-- COLE AQUI -->
+  <div class="encomenda-grid" id="encomendaGrid"></div>
+
+  <div class="encomenda-pages">
+    <button onclick="mudarPaginaEncomenda(1)">1</button>
+    <button onclick="mudarPaginaEncomenda(2)">2</button>
+    <button onclick="mudarPaginaEncomenda(3)">3</button>
+  </div>
+</section>
 
   <div class="products" id="encomendaProducts"></div>
 </section>
@@ -669,6 +753,7 @@ const produtos = [
 {id:34,categoria:"agasalhos",nome:"Cardigan Tricot Vinho",descricao:"Cardigan em tricot na cor vinho, versátil e perfeito para compor looks de inverno.",preco:45.00,imagens:["Screenshot_20260428_131531_ZAX.jpg"],tipo:"encomenda"},
 ];
 
+  
 let paginaAtual = 1;
 let categoriaAtual = "todos";
 let ordemAtual = "menor";
@@ -961,6 +1046,57 @@ renderProducts();
 renderCart();
   renderBazar();
 iniciarSlider();
+
+  const produtosEncomenda = [
+  {nome:"Vestido Midi Elegance",descricao:"Modelo sofisticado sob encomenda.",preco:"R$ 129,90"},
+  {nome:"Conjunto Alfaiataria",descricao:"Peça elegante feita por pedido.",preco:"R$ 159,90"},
+  {nome:"Macacão Premium",descricao:"Modelagem moderna e marcante.",preco:"R$ 149,90"},
+  {nome:"Blazer Feminino",descricao:"Ideal para looks elegantes.",preco:"R$ 139,90"},
+  {nome:"Saia Alfaiataria",descricao:"Clássica, versátil e confortável.",preco:"R$ 89,90"},
+  {nome:"Cropped Estruturado",descricao:"Peça moderna para compor looks.",preco:"R$ 69,90"},
+
+  {nome:"Vestido Festa",descricao:"Opção para noite e eventos.",preco:"R$ 169,90"},
+  {nome:"Calça Wide Leg",descricao:"Conforto e estilo sob encomenda.",preco:"R$ 119,90"},
+  {nome:"Camisa Acetinada",descricao:"Toque elegante e feminino.",preco:"R$ 99,90"},
+  {nome:"Body Premium",descricao:"Modelagem que valoriza o corpo.",preco:"R$ 79,90"},
+  {nome:"Conjunto Casual Chic",descricao:"Prático e bonito para o dia.",preco:"R$ 149,90"},
+  {nome:"Jaqueta Fashion",descricao:"Finaliza qualquer produção.",preco:"R$ 189,90"},
+
+  {nome:"Vestido Curto",descricao:"Look delicado sob encomenda.",preco:"R$ 109,90"},
+  {nome:"Calça Alfaiataria",descricao:"Elegante e confortável.",preco:"R$ 129,90"},
+  {nome:"Blusa Manga Longa",descricao:"Peça fácil de combinar.",preco:"R$ 79,90"},
+  {nome:"Conjunto Balada",descricao:"Para produções mais marcantes.",preco:"R$ 159,90"},
+  {nome:"Short Alfaiataria",descricao:"Moderno e versátil.",preco:"R$ 89,90"},
+  {nome:"Vestido Luxo",descricao:"Opção especial por encomenda.",preco:"R$ 199,90"}
+];
+
+let paginaEncomendaAtual = 1;
+const porPaginaEncomenda = 6;
+
+function renderEncomendas(){
+  const grid = document.getElementById("encomendaGrid");
+  if(!grid) return;
+
+  const inicio = (paginaEncomendaAtual - 1) * porPaginaEncomenda;
+  const itens = produtosEncomenda.slice(inicio, inicio + porPaginaEncomenda);
+
+  grid.innerHTML = itens.map(produto => `
+    <div class="encomenda-card">
+      <div class="encomenda-img">IMAGEM</div>
+      <h3>${produto.nome}</h3>
+      <p>${produto.descricao}</p>
+      <strong>${produto.preco}</strong>
+    </div>
+  `).join("");
+}
+
+function mudarPaginaEncomenda(pagina){
+  paginaEncomendaAtual = pagina;
+  renderEncomendas();
+  document.getElementById("catalogoEncomenda").scrollIntoView({behavior:"smooth"});
+}
+
+renderEncomendas();
 </script>
 
 </body>
